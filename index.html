@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pruthvi Kadam — Data Scientist. PySpark, LLMs, and experimentation. Interactive project portfolio." />
+  <meta name="description"
+    content="Pruthvi Kadam — Data Scientist. PySpark, LLMs, and experimentation. Interactive project portfolio." />
   <title>Pruthvi Kadam — Data Scientist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="wrap">
@@ -19,8 +22,8 @@
       </p>
       <nav class="links" aria-label="Profile links">
         <a class="btn" href="mailto:pruthvivkadam@gmail.com">Email</a>
-        <!-- TODO: replace with your real LinkedIn URL -->
-        <a class="btn" href="https://www.linkedin.com/in/REPLACE-ME" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://www.linkedin.com/in/pruthvi-kadam-480aa7265/" target="_blank"
+          rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">GitHub</a>
         <!-- TODO: drop your resume PDF in assets/ and confirm the filename below -->
         <a class="btn" href="assets/Pruthvi_Kadam_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
@@ -35,27 +38,31 @@
 
       <div class="grid">
 
-        <!-- Pinned: StarCoder2 fine-tuning -->
+        <!-- Pinned: StarCoder2 C# instruction-tuning data pipeline -->
         <article class="card pinned">
           <div class="card-top">
             <span class="pin" title="Pinned">★ Pinned</span>
             <span class="status status-done">Repo</span>
           </div>
-          <h3 class="card-title">StarCoder2 Fine-Tuning</h3>
+          <h3 class="card-title">StarCoder2 C# Instruction-Tuning Pipeline</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Adapt a code LLM to a specialized task with limited compute.</li>
-            <li><strong>Approach:</strong> Parameter-efficient fine-tuning of StarCoder2 with a documented training and eval pipeline.</li>
-            <li><strong>Result:</strong> Reproducible repo with a README walking through data, training, and evaluation.</li>
+            <li><strong>Problem:</strong> High-quality instruction-tuning data for code LLMs is scarce for languages
+              like C#.</li>
+            <li><strong>Approach:</strong> Adapted StarCoder2's Self-OSS-Instruct self-alignment pipeline to C# over The
+              Stack v2 — seed curation (Tree-sitter filtering + dedup), S→C→I→R generation with StarCoder2-15B via vLLM,
+              and heuristic self-validation. (3-person course project.)</li>
+            <li><strong>Result:</strong> A cleaned C# instruction-response dataset, published on Hugging Face, ready to
+              fine-tune instruction-following code models.</li>
           </ul>
           <div class="badges">
             <span class="badge">Python</span>
-            <span class="badge">PyTorch</span>
-            <span class="badge">PEFT / LoRA</span>
-            <span class="badge">Transformers</span>
+            <span class="badge">vLLM</span>
+            <span class="badge">Tree-sitter</span>
+            <span class="badge">Hugging Face</span>
           </div>
           <div class="card-links">
-            <!-- TODO: confirm the StarCoder2 repo URL -->
-            <a class="card-link" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">Repository →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/starcoder2-csharp-instruction-tuning"
+              target="_blank" rel="noopener">Repository →</a>
           </div>
         </article>
 
@@ -67,9 +74,12 @@
           </div>
           <h3 class="card-title">Experimentation Lab</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Designing and reading A/B tests correctly (power, peeking, variance reduction) is easy to get wrong.</li>
-            <li><strong>Approach:</strong> Interactive Streamlit app — sample-size designer, two-proportion analyzer, and a peeking/CUPED pitfalls simulator.</li>
-            <li><strong>Result:</strong> A tool that turns experimentation theory into something you can drive live.</li>
+            <li><strong>Problem:</strong> Designing and reading A/B tests correctly (power, peeking, variance reduction)
+              is easy to get wrong.</li>
+            <li><strong>Approach:</strong> Interactive Streamlit app — sample-size designer, two-proportion analyzer,
+              and a peeking/CUPED pitfalls simulator.</li>
+            <li><strong>Result:</strong> A tool that turns experimentation theory into something you can drive live.
+            </li>
           </ul>
           <div class="badges">
             <span class="badge">Python</span>
@@ -79,9 +89,10 @@
             <span class="badge">Plotly</span>
           </div>
           <div class="card-links">
-            <!-- TODO: paste Streamlit Cloud URL once deployed -->
-            <a class="card-link" href="#" data-todo="streamlit-url">Live demo (deploying) →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/ab-lab" target="_blank" rel="noopener">Repository →</a>
+            <a class="card-link" href="https://ab-lab-test.streamlit.app/" target="_blank" rel="noopener">Live demo
+              →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/ab-lab" target="_blank"
+              rel="noopener">Repository →</a>
           </div>
         </article>
 
@@ -93,9 +104,12 @@
           </div>
           <h3 class="card-title">Credit Risk Scorer</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Default-risk models need to be explainable and tied to a business threshold, not just accurate.</li>
-            <li><strong>Approach:</strong> XGBoost served via FastAPI + Docker, with per-decision SHAP explanations and a cost-based threshold explorer.</li>
-            <li><strong>Result:</strong> A deployed scoring API where you can see <em>why</em> each decision was made.</li>
+            <li><strong>Problem:</strong> Default-risk models need to be explainable and tied to a business threshold,
+              not just accurate.</li>
+            <li><strong>Approach:</strong> XGBoost served via FastAPI + Docker, with per-decision SHAP explanations and
+              a cost-based threshold explorer.</li>
+            <li><strong>Result:</strong> A deployed scoring API where you can see <em>why</em> each decision was made.
+            </li>
           </ul>
           <div class="badges">
             <span class="badge">XGBoost</span>
@@ -116,8 +130,10 @@
           </div>
           <h3 class="card-title">10-K RAG Analyst</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Answering questions over dense SEC filings requires grounded, cited answers — and a way to measure them.</li>
-            <li><strong>Approach:</strong> RAG over 10-Ks (sentence-transformers → ChromaDB → LLM) in Gradio, with RAGAS evaluation published in-app.</li>
+            <li><strong>Problem:</strong> Answering questions over dense SEC filings requires grounded, cited answers —
+              and a way to measure them.</li>
+            <li><strong>Approach:</strong> RAG over 10-Ks (sentence-transformers → ChromaDB → LLM) in Gradio, with RAGAS
+              evaluation published in-app.</li>
             <li><strong>Result:</strong> Cited answers plus faithfulness/relevancy scores most demos never show.</li>
           </ul>
           <div class="badges">
@@ -139,8 +155,10 @@
           </div>
           <h3 class="card-title">Forecasting Studio</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Forecasting is full of traps — leakage, invalid CV, and fancy models that lose to a naive baseline.</li>
-            <li><strong>Approach:</strong> Plotly Dash app benchmarking ARIMA, Prophet, and gradient-boosted models with walk-forward backtesting.</li>
+            <li><strong>Problem:</strong> Forecasting is full of traps — leakage, invalid CV, and fancy models that lose
+              to a naive baseline.</li>
+            <li><strong>Approach:</strong> Plotly Dash app benchmarking ARIMA, Prophet, and gradient-boosted models with
+              walk-forward backtesting.</li>
             <li><strong>Result:</strong> An honest leaderboard (MAPE/RMSE/MASE) over market and FRED macro series.</li>
           </ul>
           <div class="badges">
@@ -162,9 +180,12 @@
           </div>
           <h3 class="card-title">Browser SQL Workbench</h3>
           <ul class="pap">
-            <li><strong>Problem:</strong> Practicing advanced SQL (window functions, cohorts) usually needs a server.</li>
-            <li><strong>Approach:</strong> 100% client-side DuckDB-WASM + CodeMirror over a 100K-row e-commerce dataset, with 10 guided challenges.</li>
-            <li><strong>Result:</strong> A zero-backend workbench that runs instantly on GitHub Pages and never sleeps.</li>
+            <li><strong>Problem:</strong> Practicing advanced SQL (window functions, cohorts) usually needs a server.
+            </li>
+            <li><strong>Approach:</strong> 100% client-side DuckDB-WASM + CodeMirror over a 100K-row e-commerce dataset,
+              with 10 guided challenges.</li>
+            <li><strong>Result:</strong> A zero-backend workbench that runs instantly on GitHub Pages and never sleeps.
+            </li>
           </ul>
           <div class="badges">
             <span class="badge">JavaScript</span>
@@ -186,8 +207,10 @@
           <h3 class="card-title">HR Attrition Dashboard</h3>
           <ul class="pap">
             <li><strong>Problem:</strong> Where is an organization losing people, and what does it cost?</li>
-            <li><strong>Approach:</strong> Interactive Tableau Public dashboard over 1,470 employee records with KPI cards and risk views.</li>
-            <li><strong>Result:</strong> A client-facing dashboard quantifying attrition drivers and replacement cost.</li>
+            <li><strong>Approach:</strong> Interactive Tableau Public dashboard over 1,470 employee records with KPI
+              cards and risk views.</li>
+            <li><strong>Result:</strong> A client-facing dashboard quantifying attrition drivers and replacement cost.
+            </li>
           </ul>
           <div class="badges">
             <span class="badge">Tableau</span>
@@ -210,4 +233,5 @@
     </div>
   </footer>
 </body>
+
 </html>

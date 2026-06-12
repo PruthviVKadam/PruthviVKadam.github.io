@@ -18,7 +18,8 @@ python -m http.server 8000
 Push to `main` — GitHub Pages republishes automatically in ~2 minutes.
 
 ## To finish before sharing
-- [ ] Replace the LinkedIn `REPLACE-ME` URL in `index.html`.
-- [ ] Add `assets/Pruthvi_Kadam_Resume.pdf` (the résumé button points there).
-- [ ] Paste the Experimentation Lab Streamlit URL into the P1 card once deployed.
-- [ ] Confirm the StarCoder2 repo URL on the pinned card.
+
+- [x] Replace the LinkedIn URL in `index.html` → `pruthvi-kadam-480aa7265`.
+- [x] Add `assets/Pruthvi_Kadam_Resume.pdf` (the résumé button points there).
+- [x] Paste the Experimentation Lab Streamlit URL into the P1 card → `ab-lab-test.streamlit.app`.
+- [x] Confirm the StarCoder2 repo URL → `starcoder2-csharp-instruction-tuning`.
