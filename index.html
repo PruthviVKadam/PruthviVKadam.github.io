@@ -128,24 +128,27 @@
         <article class="card">
           <div class="card-top">
             <span class="tag">LLM / RAG</span>
-            <span class="status status-planned">Planned</span>
+            <span class="status status-progress">In progress</span>
           </div>
           <h3 class="card-title">10-K RAG Analyst</h3>
           <ul class="pap">
             <li><strong>Problem:</strong> Answering questions over dense SEC filings requires grounded, cited answers —
               and a way to measure them.</li>
-            <li><strong>Approach:</strong> RAG over 10-Ks (sentence-transformers → ChromaDB → LLM) in Gradio, with RAGAS
-              evaluation published in-app.</li>
-            <li><strong>Result:</strong> Cited answers plus faithfulness/relevancy scores most demos never show.</li>
+            <li><strong>Approach:</strong> RAG over real 10-Ks — Item-aware chunking → ChromaDB (all-MiniLM-L6-v2) →
+              grounded, cited answers in Gradio, with a published retrieval evaluation.</li>
+            <li><strong>Result:</strong> Every answer cites its source Item, plus a reproducible eval (hit-rate 80%,
+              MRR 0.71) most demos never show.</li>
           </ul>
           <div class="badges">
             <span class="badge">RAG</span>
             <span class="badge">ChromaDB</span>
             <span class="badge">Gradio</span>
-            <span class="badge">RAGAS</span>
+            <span class="badge">SEC EDGAR</span>
           </div>
           <div class="card-links">
-            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+            <a class="card-link disabled" aria-disabled="true">Live demo (deploying)</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/tenk-rag" target="_blank"
+              rel="noopener">Repository →</a>
           </div>
         </article>
 
