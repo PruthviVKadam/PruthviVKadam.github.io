@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pruthvi Kadam — Data Scientist. PySpark, LLMs, and experimentation. Interactive project portfolio." />
+  <title>Pruthvi Kadam — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="name">Pruthvi Kadam</h1>
+      <p class="headline">Data Scientist — PySpark &middot; LLMs &middot; Experimentation</p>
+      <p class="tagline">
+        I build and ship interactive data &amp; ML applications. Each project below is a live demo you can use,
+        not a screenshot.
+      </p>
+      <nav class="links" aria-label="Profile links">
+        <a class="btn" href="mailto:pruthvivkadam@gmail.com">Email</a>
+        <!-- TODO: replace with your real LinkedIn URL -->
+        <a class="btn" href="https://www.linkedin.com/in/REPLACE-ME" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">GitHub</a>
+        <!-- TODO: drop your resume PDF in assets/ and confirm the filename below -->
+        <a class="btn" href="assets/Pruthvi_Kadam_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="section-title">Projects</h2>
+      <p class="section-sub">Click any live demo — they run in your browser or on a free hosted instance.</p>
+
+      <div class="grid">
+
+        <!-- Pinned: StarCoder2 fine-tuning -->
+        <article class="card pinned">
+          <div class="card-top">
+            <span class="pin" title="Pinned">★ Pinned</span>
+            <span class="status status-done">Repo</span>
+          </div>
+          <h3 class="card-title">StarCoder2 Fine-Tuning</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Adapt a code LLM to a specialized task with limited compute.</li>
+            <li><strong>Approach:</strong> Parameter-efficient fine-tuning of StarCoder2 with a documented training and eval pipeline.</li>
+            <li><strong>Result:</strong> Reproducible repo with a README walking through data, training, and evaluation.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">PyTorch</span>
+            <span class="badge">PEFT / LoRA</span>
+            <span class="badge">Transformers</span>
+          </div>
+          <div class="card-links">
+            <!-- TODO: confirm the StarCoder2 repo URL -->
+            <a class="card-link" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">Repository →</a>
+          </div>
+        </article>
+
+        <!-- P1 Experimentation Lab -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">A/B Testing</span>
+            <span class="status status-progress">In progress</span>
+          </div>
+          <h3 class="card-title">Experimentation Lab</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Designing and reading A/B tests correctly (power, peeking, variance reduction) is easy to get wrong.</li>
+            <li><strong>Approach:</strong> Interactive Streamlit app — sample-size designer, two-proportion analyzer, and a peeking/CUPED pitfalls simulator.</li>
+            <li><strong>Result:</strong> A tool that turns experimentation theory into something you can drive live.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">Streamlit</span>
+            <span class="badge">statsmodels</span>
+            <span class="badge">SciPy</span>
+            <span class="badge">Plotly</span>
+          </div>
+          <div class="card-links">
+            <!-- TODO: paste Streamlit Cloud URL once deployed -->
+            <a class="card-link" href="#" data-todo="streamlit-url">Live demo (deploying) →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/ab-lab" target="_blank" rel="noopener">Repository →</a>
+          </div>
+        </article>
+
+        <!-- P2 Credit Risk Scorer -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">Finance / ML</span>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <h3 class="card-title">Credit Risk Scorer</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Default-risk models need to be explainable and tied to a business threshold, not just accurate.</li>
+            <li><strong>Approach:</strong> XGBoost served via FastAPI + Docker, with per-decision SHAP explanations and a cost-based threshold explorer.</li>
+            <li><strong>Result:</strong> A deployed scoring API where you can see <em>why</em> each decision was made.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">XGBoost</span>
+            <span class="badge">SHAP</span>
+            <span class="badge">FastAPI</span>
+            <span class="badge">Docker</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+          </div>
+        </article>
+
+        <!-- P3 10-K RAG Analyst -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">LLM / RAG</span>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <h3 class="card-title">10-K RAG Analyst</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Answering questions over dense SEC filings requires grounded, cited answers — and a way to measure them.</li>
+            <li><strong>Approach:</strong> RAG over 10-Ks (sentence-transformers → ChromaDB → LLM) in Gradio, with RAGAS evaluation published in-app.</li>
+            <li><strong>Result:</strong> Cited answers plus faithfulness/relevancy scores most demos never show.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">RAG</span>
+            <span class="badge">ChromaDB</span>
+            <span class="badge">Gradio</span>
+            <span class="badge">RAGAS</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+          </div>
+        </article>
+
+        <!-- P4 Forecasting Studio -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">Time Series</span>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <h3 class="card-title">Forecasting Studio</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Forecasting is full of traps — leakage, invalid CV, and fancy models that lose to a naive baseline.</li>
+            <li><strong>Approach:</strong> Plotly Dash app benchmarking ARIMA, Prophet, and gradient-boosted models with walk-forward backtesting.</li>
+            <li><strong>Result:</strong> An honest leaderboard (MAPE/RMSE/MASE) over market and FRED macro series.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Dash</span>
+            <span class="badge">statsmodels</span>
+            <span class="badge">Prophet</span>
+            <span class="badge">XGBoost</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+          </div>
+        </article>
+
+        <!-- P5 SQL Workbench -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">SQL</span>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <h3 class="card-title">Browser SQL Workbench</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Practicing advanced SQL (window functions, cohorts) usually needs a server.</li>
+            <li><strong>Approach:</strong> 100% client-side DuckDB-WASM + CodeMirror over a 100K-row e-commerce dataset, with 10 guided challenges.</li>
+            <li><strong>Result:</strong> A zero-backend workbench that runs instantly on GitHub Pages and never sleeps.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">JavaScript</span>
+            <span class="badge">DuckDB-WASM</span>
+            <span class="badge">CodeMirror</span>
+            <span class="badge">ECharts</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+          </div>
+        </article>
+
+        <!-- P6 HR Attrition Dashboard -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">BI / Tableau</span>
+            <span class="status status-planned">Planned</span>
+          </div>
+          <h3 class="card-title">HR Attrition Dashboard</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Where is an organization losing people, and what does it cost?</li>
+            <li><strong>Approach:</strong> Interactive Tableau Public dashboard over 1,470 employee records with KPI cards and risk views.</li>
+            <li><strong>Result:</strong> A client-facing dashboard quantifying attrition drivers and replacement cost.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Tableau</span>
+            <span class="badge">Data Viz</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Built with plain HTML/CSS, hosted on GitHub Pages.
+        <a href="https://github.com/PruthviVKadam/PruthviVKadam.github.io" target="_blank" rel="noopener">Source</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
