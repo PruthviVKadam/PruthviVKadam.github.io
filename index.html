@@ -156,15 +156,16 @@
         <article class="card">
           <div class="card-top">
             <span class="tag">Time Series</span>
-            <span class="status status-planned">Planned</span>
+            <span class="status status-progress">In progress</span>
           </div>
           <h3 class="card-title">Forecasting Studio</h3>
           <ul class="pap">
             <li><strong>Problem:</strong> Forecasting is full of traps — leakage, invalid CV, and fancy models that lose
               to a naive baseline.</li>
             <li><strong>Approach:</strong> Plotly Dash app benchmarking ARIMA, Prophet, and gradient-boosted models with
-              walk-forward backtesting.</li>
-            <li><strong>Result:</strong> An honest leaderboard (MAPE/RMSE/MASE) over market and FRED macro series.</li>
+              leakage-free walk-forward backtesting.</li>
+            <li><strong>Result:</strong> An honest leaderboard (MASE/MAPE/RMSE) over market series — where ARIMA only
+              barely beats the naive baseline.</li>
           </ul>
           <div class="badges">
             <span class="badge">Dash</span>
@@ -173,7 +174,9 @@
             <span class="badge">XGBoost</span>
           </div>
           <div class="card-links">
-            <a class="card-link disabled" aria-disabled="true">Live demo (soon)</a>
+            <a class="card-link disabled" aria-disabled="true">Live demo (deploying)</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/forecast-studio" target="_blank"
+              rel="noopener">Repository →</a>
           </div>
         </article>
 
