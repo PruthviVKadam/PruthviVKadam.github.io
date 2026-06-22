@@ -234,7 +234,7 @@
             <span class="badge">XGBoost</span>
           </div>
           <div class="card-links">
-            <a class="card-link" href="https://PruthviVKadam-forecast-studio.hf.space" target="_blank"
+            <a class="card-link" href="https://pk759-forecast-studio.hf.space" target="_blank"
               rel="noopener">Live demo →</a>
             <a class="card-link" href="https://github.com/PruthviVKadam/forecast-studio" target="_blank"
               rel="noopener">Repository →</a>
@@ -266,6 +266,35 @@
             <a class="card-link" href="https://pruthvivkadam.github.io/sql-workbench/" target="_blank"
               rel="noopener">Live demo →</a>
             <a class="card-link" href="https://github.com/PruthviVKadam/sql-workbench" target="_blank"
+              rel="noopener">Repository →</a>
+          </div>
+        </article>
+
+        <!-- SQL Copilot (text-to-SQL + guardrails) -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">LLM / SQL</span>
+            <span class="status status-done">Live</span>
+          </div>
+          <h3 class="card-title">SQL Copilot</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Natural-language-to-SQL is high-value but easy to ship
+              dangerously — it can mutate data or hallucinate columns a compliance team would never allow.</li>
+            <li><strong>Approach:</strong> Schema-aware NL→SQL over DuckDB with a parse-time guardrail
+              (sqlglot — read-only SELECT only) and binder-based hallucination detection.</li>
+            <li><strong>Result:</strong> Blocks 12/12 destructive ops, flags 4/4 hallucinated queries,
+              and 15/15 gold questions execute — safety measured, not promised.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">DuckDB</span>
+            <span class="badge">sqlglot</span>
+            <span class="badge">Streamlit</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://pk759-sql-copilot.hf.space" target="_blank"
+              rel="noopener">Live demo →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/sql-copilot" target="_blank"
               rel="noopener">Repository →</a>
           </div>
         </article>
