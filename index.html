@@ -154,6 +154,35 @@
           </div>
         </article>
 
+        <!-- Model Monitor (drift / MLOps) -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">ML Monitoring</span>
+            <span class="status status-done">Live</span>
+          </div>
+          <h3 class="card-title">Model Monitor</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Models rot silently — inputs drift and the scored population
+              changes, but teams find out from a business metric weeks later.</li>
+            <li><strong>Approach:</strong> Drift (PSI/KS/JSD) + prediction-drift + performance monitoring
+              over the live Credit Risk model, with an injected-drift detection study.</li>
+            <li><strong>Result:</strong> Caught an injected covariate shift in 2 batches at 0% false
+              alarms — while AUC stayed blind (0.83→0.85) and the real default rate doubled.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">XGBoost</span>
+            <span class="badge">scipy</span>
+            <span class="badge">Streamlit</span>
+            <span class="badge">Docker</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://PruthviVKadam-model-monitor.hf.space" target="_blank"
+              rel="noopener">Live demo →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/model-monitor" target="_blank"
+              rel="noopener">Repository →</a>
+          </div>
+        </article>
+
         <!-- P3 10-K RAG Analyst -->
         <article class="card">
           <div class="card-top">
