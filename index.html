@@ -241,6 +241,37 @@
           </div>
         </article>
 
+        <!-- Recsys Studio (ranking eval, temporal split) -->
+        <article class="card">
+          <div class="card-top">
+            <span class="tag">Recommenders</span>
+            <span class="status status-done">Live</span>
+          </div>
+          <h3 class="card-title">Recsys Studio</h3>
+          <ul class="pap">
+            <li><strong>Problem:</strong> Most portfolio recommenders report RMSE on a random split —
+              which rewards a number nobody ranks by and leaks the future into the past.</li>
+            <li><strong>Approach:</strong> Implicit-feedback recommenders (popularity &rarr; item-kNN
+              &rarr; ALS) scored by NDCG/Recall/MAP on a leakage-free global temporal split, with
+              catalog coverage and novelty.</li>
+            <li><strong>Result:</strong> The popularity baseline wins raw accuracy (NDCG@10 0.124);
+              ALS trades it for 7.5&times; the catalog coverage — baselines are hard to beat, shown
+              honestly.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">implicit (ALS)</span>
+            <span class="badge">scikit-learn</span>
+            <span class="badge">Streamlit</span>
+          </div>
+          <div class="card-links">
+            <a class="card-link" href="https://pk759-recsys-studio.hf.space" target="_blank"
+              rel="noopener">Live demo →</a>
+            <a class="card-link" href="https://github.com/PruthviVKadam/recsys-studio" target="_blank"
+              rel="noopener">Repository →</a>
+          </div>
+        </article>
+
         <!-- P5 SQL Workbench -->
         <article class="card">
           <div class="card-top">
