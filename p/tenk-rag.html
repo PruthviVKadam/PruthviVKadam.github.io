@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="10-K RAG Analyst — grounded, cited answers over real SEC 10-K filings, with a published retrieval evaluation. By Pruthvi Kadam." />
+  <title>10-K RAG Analyst — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: EDITORIAL / DOCUMENT — warm ink + amber, a citation card. */
+    body { --accent: #b9770e; --bg:#fbf8f3; --surface:#fffdf8; --line:#ece3d2; --line-2:#ddd0b6; }
+    .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px, 5vw, 56px); align-items: center; }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(60% 50% at 100% 0, var(--accent-soft), transparent 70%); }
+    .doc { border:1px solid var(--line-2); border-radius: var(--r-lg); background: var(--surface); padding: 24px; box-shadow: var(--shadow); }
+    .doc .ans { font-size:1.02rem; line-height:1.6; }
+    .cites { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+    .cite { font-family: var(--mono); font-size:.72rem; padding:4px 10px; border-radius:999px;
+      border:1px solid var(--accent-line); color: var(--accent); background: var(--accent-soft); }
+    @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam/tenk-rag" target="_blank" rel="noopener">Repository</a>
+      <a class="btn btn-primary btn-sm" href="https://PruthviVKadam-tenk-rag.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container split">
+      <div class="stack" style="--flow: 18px;">
+        <p class="eyebrow">LLM / RAG · Live</p>
+        <h1 class="p-title">Answers from 10-Ks that cite the Item they came from.</h1>
+        <p class="lead">RAG over real SEC filings — item-aware chunking → ChromaDB → grounded answers with citations, and a <strong>published retrieval evaluation</strong> most demos skip.</p>
+        <div class="cta-row" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://PruthviVKadam-tenk-rag.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+          <a class="btn" href="https://github.com/PruthviVKadam/tenk-rag" target="_blank" rel="noopener">View code</a>
+        </div>
+      </div>
+      <div class="doc">
+        <p class="eyebrow" style="color:var(--muted)">Q · AAPL</p>
+        <p class="ans" style="margin:6px 0 0;">"What are the most significant risk factors?"</p>
+        <hr style="border:none; border-top:1px solid var(--line); margin:14px 0;" />
+        <p class="ans muted">The filing highlights supply-chain concentration, FX exposure, and competitive &amp; regulatory pressure…</p>
+        <div class="cites">
+          <span class="cite">Item 1A · dist 0.42</span>
+          <span class="cite">Item 7 · dist 0.51</span>
+          <span class="cite">Item 1A · dist 0.55</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">Answering questions over dense SEC filings needs grounded, cited answers — and a way to <em>measure</em> retrieval, which most RAG demos never show.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Item-aware chunking of real 10-Ks → ChromaDB with ONNX all-MiniLM-L6-v2 (no torch) → answers that cite their Item; Groq when keyed, else an extractive cited fallback.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">Every answer shows its sources beside it, plus a reproducible retrieval eval over a labeled question set.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Retrieval, evaluated</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">80%</div><div class="l">hit-rate@5</div></div>
+        <div class="metric"><div class="n">76.7%</div><div class="l">recall@5</div></div>
+        <div class="metric"><div class="n">0.713</div><div class="l">MRR over 15 labeled questions</div></div>
+        <div class="metric"><div class="n">3</div><div class="l">real filings (AAPL · MSFT · JPM)</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Grounding is non-negotiable.</b> The UI never shows an answer without its cited sections — a hallucination becomes obvious instead of plausible.</p>
+        <p class="insight"><b>Retrieval is the part to measure.</b> Hit-rate / recall / MRR over a labeled set is what separates "a RAG demo" from a system you can trust.</p>
+        <p class="insight"><b>No-key by default.</b> The extractive cited fallback keeps the app fully usable without an LLM key — and avoids quoting generation metrics that weren't actually run.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">RAG</span><span class="chip">ChromaDB</span><span class="chip">ONNX MiniLM</span>
+        <span class="chip">Gradio</span><span class="chip">SEC EDGAR</span><span class="chip">Groq (optional)</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://PruthviVKadam-tenk-rag.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/tenk-rag" target="_blank" rel="noopener">Repository</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>

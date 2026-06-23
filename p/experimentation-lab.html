@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Experimentation Lab — design and analyze A/B tests: power, the peeking trap, and CUPED variance reduction. By Pruthvi Kadam." />
+  <title>Experimentation Lab — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: POSTER — centered, oversized metric, light, lab-teal */
+    body { --accent: #0c8599; --accent-line: color-mix(in srgb, var(--accent) 38%, transparent); }
+    .p-hero { text-align: center; padding-block: clamp(48px, 9vw, 120px); }
+    .p-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 38px, color-mix(in srgb, var(--accent) 9%, transparent) 38px 39px);
+      -webkit-mask-image: radial-gradient(70% 70% at 50% 30%, #000, transparent);
+      mask-image: radial-gradient(70% 70% at 50% 30%, #000, transparent);
+    }
+    .poster-metric { font-family: var(--display); font-weight: 700; letter-spacing: -.04em;
+      font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: .98; margin: 18px auto 8px; max-width: 16ch; }
+    .poster-metric .hi { color: var(--accent); }
+    .p-hero .lead { margin-inline: auto; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .par { margin-top: 8px; }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam/ab-lab" target="_blank" rel="noopener">Repository</a>
+      <a class="btn btn-primary btn-sm" href="https://ab-lab-test.streamlit.app/" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container">
+      <p class="eyebrow">A/B Testing · Experimentation · Live</p>
+      <h1 class="poster-metric">Peeking inflates false positives <span class="hi">5% → 25%</span></h1>
+      <p class="lead">An interactive lab for designing and reading A/B tests the way they should be read — power analysis, the early-stopping trap, and CUPED variance reduction, all driveable live.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://ab-lab-test.streamlit.app/" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+        <a class="btn" href="https://github.com/PruthviVKadam/ab-lab" target="_blank" rel="noopener">View code</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">Designing and reading A/B tests correctly — power, peeking, variance reduction — is easy to get wrong, and the mistakes quietly ship bad decisions.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">A Streamlit app with three tools: a sample-size designer, a two-proportion analyzer (real Cookie Cats data / CSV / counts), and a Monte-Carlo simulator for peeking + CUPED.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">Theory you can drive: watch the false-positive rate balloon as you peek, and the CI tighten as CUPED removes variance — all from pure, unit-tested statistics.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Measured, not asserted</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">5% → ~25%</div><div class="l">false-positive rate, 1 look → 20 looks (peeking)</div></div>
+        <div class="metric"><div class="n">19.0% → 18.2%</div><div class="l">Cookie Cats day-7 retention, gate_30 vs gate_40 (p ≈ 0.0016)</div></div>
+        <div class="metric"><div class="n">√(1−ρ²)</div><div class="l">CUPED standard-error shrink — same power, fewer users</div></div>
+        <div class="metric"><div class="n">59</div><div class="l">unit tests vs textbook / statsmodels oracles</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Peeking destroys false-positive control.</b> Under the null, checking once gives ≈5% false wins; stopping the moment p&lt;α pushes that toward 25% — the result is a fluke, not a finding.</p>
+        <p class="insight"><b>The fix is procedural, not statistical.</b> Fix the sample size in advance (the designer) or use a sequential correction — the data isn't the problem, the stopping rule is.</p>
+        <p class="insight"><b>CUPED buys power for free.</b> Adjusting on a pre-experiment covariate cuts variance by ρ² without biasing the effect — narrower CIs at the same sample size.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">statsmodels</span>
+        <span class="chip">SciPy</span><span class="chip">Plotly</span><span class="chip">pytest</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://ab-lab-test.streamlit.app/" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/ab-lab" target="_blank" rel="noopener">Repository</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>

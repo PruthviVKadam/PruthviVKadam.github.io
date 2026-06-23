@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Active Learning Lab — weak supervision + active learning that reaches target accuracy with 79% fewer labels. By Pruthvi Kadam." />
+  <title>Active Learning Lab — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: LAB / SCIENTIFIC — blue, graph-paper grid + a learning curve. */
+    body { --accent: #1c7ed6; }
+    .split { display:grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px,5vw,56px); align-items:center; }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1; opacity:.6;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 28px 28px;
+      -webkit-mask-image: radial-gradient(70% 60% at 70% 30%, #000, transparent); mask-image: radial-gradient(70% 60% at 70% 30%, #000, transparent); }
+    .viz { border:1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); padding:22px; box-shadow: var(--shadow); }
+    .viz figcaption { font-family: var(--mono); font-size:.74rem; color:var(--muted); margin-top:10px; }
+    @media (max-width: 820px){ .split{ grid-template-columns:1fr; } }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam/active-learning-lab" target="_blank" rel="noopener">Repository</a>
+      <a class="btn btn-primary btn-sm" href="https://pruthvikadam-active-learning-lab.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container split">
+      <div class="stack" style="--flow: 18px;">
+        <p class="eyebrow">Data-Centric ML · Live</p>
+        <h1 class="p-title">Target accuracy with 79% fewer labels.</h1>
+        <p class="lead">Weak supervision bootstraps labels with <strong>zero</strong> manual annotation; active learning spends human labels where they matter — proven on a labels-vs-accuracy curve against random sampling.</p>
+        <div class="cta-row" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://pruthvikadam-active-learning-lab.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+          <a class="btn" href="https://github.com/PruthviVKadam/active-learning-lab" target="_blank" rel="noopener">View code</a>
+        </div>
+      </div>
+      <figure class="viz" style="margin:0;">
+        <svg viewBox="0 0 320 200" width="100%" role="img" aria-label="Learning curves: uncertainty sampling vs random">
+          <line x1="24" y1="176" x2="304" y2="176" stroke="#d9dbd4"/>
+          <line x1="24" y1="20" x2="24" y2="176" stroke="#d9dbd4"/>
+          <line x1="24" y1="60" x2="304" y2="60" stroke="#9aa0ad" stroke-dasharray="4 4"/>
+          <text x="200" y="54" font-size="9" fill="#6b7280" font-family="monospace">full-supervision ceiling</text>
+          <path d="M24 176 C 70 120, 96 78, 140 70 S 240 62, 304 60" fill="none" stroke="#1c7ed6" stroke-width="3"/>
+          <path d="M24 176 C 110 168, 200 150, 304 118" fill="none" stroke="#9aa0ad" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <text x="150" y="92" font-size="10" fill="#1c7ed6" font-family="monospace">uncertainty</text>
+          <text x="210" y="138" font-size="10" fill="#9aa0ad" font-family="monospace">random</text>
+        </svg>
+        <figcaption>Spam F1 vs labels spent — uncertainty (blue) reaches target far sooner than random.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">The bottleneck in most ML isn't the model — it's labels. Hand-labeling is slow, and labeling random examples wastes budget on cases the model already gets right.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">On SMS spam: 8 noisy labeling functions → a label-free label model (weak supervision), then active learning that queries the least-confident examples vs a random baseline.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A learning curve that proves the saving — and a label model that down-weights its own bad heuristics without ever seeing a gold label.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">5 seeds · fixed held-out test</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">120 vs 580</div><div class="l">labels to spam-F1 0.85 — uncertainty vs random</div></div>
+        <div class="metric"><div class="n">79%</div><div class="l">label-budget reduction</div></div>
+        <div class="metric"><div class="n">0.853</div><div class="l">weak-supervision-only F1 (0 manual labels)</div></div>
+        <div class="metric"><div class="n">~200</div><div class="l">labels (≈5%) match the full-supervision ceiling</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Smarter labeling beats more labeling.</b> Uncertainty sampling keeps pulling near-boundary (often spam) examples, while random spends ~87% of its budget on easy ham.</p>
+        <p class="insight"><b>Weak supervision degrades gracefully.</b> A bad labeling function (11% accurate) was auto-down-weighted to 0.23 by a model that never saw a gold label.</p>
+        <p class="insight"><b>For two classes, three strategies are one.</b> Least-confidence, margin and entropy are all monotonic in |p−0.5|, so they pick identical points — a fact pinned by a unit test, not faked as "we tried three".</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">scikit-learn</span><span class="chip">weak supervision</span><span class="chip">active learning</span>
+        <span class="chip">Streamlit</span><span class="chip">Plotly</span><span class="chip">Docker</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://pruthvikadam-active-learning-lab.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/active-learning-lab" target="_blank" rel="noopener">Repository</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>

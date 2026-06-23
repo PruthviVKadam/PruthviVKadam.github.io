@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Uplift Studio — causal / CATE meta-learners scored by Qini. Target who to treat, not just whether treatment works. By Pruthvi Kadam." />
+  <title>Uplift Studio — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: SPLIT EDITORIAL — left story, right a drawn Qini curve. Violet. */
+    body { --accent: #7048e8; }
+    .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(24px, 5vw, 56px); align-items: center; }
+    .p-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(50% 60% at 100% 0%, var(--accent-soft), transparent 70%);
+    }
+    .viz {
+      border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface);
+      padding: 22px; box-shadow: var(--shadow);
+    }
+    .viz figcaption { font-family: var(--mono); font-size: .74rem; color: var(--muted); margin-top: 10px; }
+    @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam/uplift-studio" target="_blank" rel="noopener">Repository</a>
+      <a class="btn btn-primary btn-sm" href="https://PruthviVKadam-uplift-studio.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container split">
+      <div class="stack" style="--flow: 18px;">
+        <p class="eyebrow">Causal ML · CATE · Live</p>
+        <h1 class="p-title">Who to treat — not just whether treatment works.</h1>
+        <p class="lead">Uplift meta-learners (S / T / DDR) on the Hillstrom campaign, scored by <strong>Qini</strong> rather than accuracy, behind a live targeting-policy simulator.</p>
+        <div class="cta-row" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://PruthviVKadam-uplift-studio.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+          <a class="btn" href="https://github.com/PruthviVKadam/uplift-studio" target="_blank" rel="noopener">View code</a>
+        </div>
+      </div>
+      <figure class="viz" style="margin:0;">
+        <svg viewBox="0 0 320 200" width="100%" role="img" aria-label="Qini curve: uplift model above the random diagonal">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7048e8" stop-opacity=".28"/><stop offset="1" stop-color="#7048e8" stop-opacity="0"/>
+          </linearGradient></defs>
+          <line x1="20" y1="180" x2="300" y2="180" stroke="#d9dbd4"/>
+          <line x1="20" y1="20" x2="20" y2="180" stroke="#d9dbd4"/>
+          <line x1="20" y1="180" x2="300" y2="40" stroke="#9aa0ad" stroke-dasharray="5 5"/>
+          <path d="M20 180 C 120 120, 180 70, 300 40 L300 180 Z" fill="url(#g)"/>
+          <path d="M20 180 C 120 120, 180 70, 300 40" fill="none" stroke="#7048e8" stroke-width="3"/>
+          <line x1="104" y1="20" x2="104" y2="180" stroke="#7048e8" stroke-dasharray="3 4" opacity=".6"/>
+          <text x="108" y="34" font-size="10" fill="#7048e8" font-family="monospace">top 30%</text>
+        </svg>
+        <figcaption>Qini curve — model (solid) vs random (dashed); shaded = incremental gain captured.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">An A/B test tells you <em>if</em> a treatment works on average — not <em>who</em> to target, or who the "sleeping dogs" are that you hurt by contacting.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Train S/T/DDR uplift meta-learners on the Hillstrom email campaign, evaluate with Qini/AUUC, and expose a live targeting-policy slider (treat the top X% by predicted uplift).</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A targeting policy you can defend: spend on the persuadables, skip the lost causes and the sure things — measured against a random-targeting baseline.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Scored by Qini, not accuracy</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">+5.50pp</div><div class="l">average treatment effect (visit rate)</div></div>
+        <div class="metric"><div class="n">0.01601</div><div class="l">S-learner Qini AUC</div></div>
+        <div class="metric"><div class="n">34.2%</div><div class="l">of incremental visits captured by the top 30%</div></div>
+        <div class="metric"><div class="n">1.14×</div><div class="l">lift over a random targeting policy</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Targeting is a CATE problem, not a propensity one.</b> Ranking by predicted <em>incremental</em> effect beats blasting everyone or chasing likely-buyers who'd convert anyway.</p>
+        <p class="insight"><b>Qini is the honest scorer.</b> Accuracy is meaningless for uplift (you never see both potential outcomes); the Qini curve measures incremental gain vs random.</p>
+        <p class="insight"><b>Sleeping dogs are real.</b> Some segments respond <em>negatively</em> to contact — a model that surfaces them protects revenue an A/B average would hide.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">Python</span><span class="chip">scikit-uplift</span><span class="chip">scikit-learn</span>
+        <span class="chip">Streamlit</span><span class="chip">Plotly</span><span class="chip">Docker</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://PruthviVKadam-uplift-studio.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/uplift-studio" target="_blank" rel="noopener">Repository</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>

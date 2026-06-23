@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SQL Copilot — schema-aware NL→SQL over DuckDB with a parse-time guardrail and binder-based hallucination detection. By Pruthvi Kadam." />
+  <title>SQL Copilot — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: TERMINAL — dark, green-on-black, a code console showing BLOCKED. */
+    body { --accent: #2bd576; --mono: "JetBrains Mono", ui-monospace, monospace; }
+    .split { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,5vw,56px); align-items:center; }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(55% 60% at 95% 0, color-mix(in srgb,var(--accent) 12%, transparent), transparent 70%); }
+    .term { border:1px solid var(--line); border-radius: var(--r); background:#0b0d12; box-shadow: var(--shadow-lg); overflow:hidden; font-family: var(--mono); }
+    .term .bar { display:flex; gap:6px; padding:10px 12px; border-bottom:1px solid var(--line); }
+    .term .bar i { width:11px; height:11px; border-radius:50%; background:#2b303b; }
+    .term pre { margin:0; padding:16px; font-size:.78rem; line-height:1.7; color:#c3c8d4; overflow-x:auto; }
+    .term .ok { color: var(--accent); } .term .no { color:#ff6b6b; } .term .dim { color:#6b7280; }
+    @media (max-width: 820px){ .split{ grid-template-columns:1fr; } }
+  </style>
+</head>
+
+<body class="theme-dark">
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam/sql-copilot" target="_blank" rel="noopener">Repository</a>
+      <a class="btn btn-primary btn-sm" href="https://pk759-sql-copilot.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container split">
+      <div class="stack" style="--flow: 18px;">
+        <p class="eyebrow">LLM / SQL · Safety · Live</p>
+        <h1 class="p-title">Natural-language SQL that's safe by construction.</h1>
+        <p class="lead">Schema-aware NL→SQL over DuckDB with a <strong>parse-time guardrail</strong> (single read-only SELECT) and a binder check that catches hallucinated columns before they run.</p>
+        <div class="cta-row" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://pk759-sql-copilot.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+          <a class="btn" href="https://github.com/PruthviVKadam/sql-copilot" target="_blank" rel="noopener">View code</a>
+        </div>
+      </div>
+      <div class="term">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="dim"># the safety playground</span>
+DROP TABLE orders;        <span class="no">→ BLOCKED</span> <span class="dim">(not read-only SELECT)</span>
+SELECT read_csv('/etc…')  <span class="no">→ BLOCKED</span> <span class="dim">(denied function)</span>
+SELECT bogus_col FROM …   <span class="no">→ FLAGGED</span> <span class="dim">(column doesn't exist)</span>
+SELECT name FROM orders   <span class="ok">→ ALLOWED</span> <span class="dim">(+ LIMIT 1000)</span></pre>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">NL→SQL is high-value and easy to ship <em>dangerously</em> — it can mutate data, read files, or hallucinate columns a compliance team would never allow.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Generate SQL, then gate it: sqlglot parses to enforce a single read-only SELECT and deny file functions, inject a LIMIT, and a DuckDB binder (EXPLAIN) verifies every column exists.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A copilot whose safety is <em>measured</em> against adversarial and hallucinated queries — not promised in a README.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Safety, measured</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">12 / 12</div><div class="l">destructive / unsafe queries blocked</div></div>
+        <div class="metric"><div class="n">4 / 4</div><div class="l">hallucinated-column queries flagged</div></div>
+        <div class="metric"><div class="n">15 / 15</div><div class="l">gold questions pass the guard + execute</div></div>
+        <div class="metric"><div class="n">2</div><div class="l">real guard bugs found by measuring, then fixed</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Parse, don't regex.</b> An AST guard over sqlglot reasons about the query's structure — far harder to slip past than string matching on "DROP".</p>
+        <p class="insight"><b>Hallucination is a binder problem.</b> Asking DuckDB to EXPLAIN the query catches invented columns deterministically, before any rows move.</p>
+        <p class="insight"><b>Measuring found the bugs.</b> An adversarial suite caught <code>read_csv</code> slipping the guard and a false-flag on aliases — both fixed because they were tested, not assumed.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">sqlglot</span><span class="chip">DuckDB</span><span class="chip">Groq (optional)</span>
+        <span class="chip">Streamlit</span><span class="chip">Docker</span><span class="chip">pytest</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://pk759-sql-copilot.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/sql-copilot" target="_blank" rel="noopener">Repository</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -5,397 +5,254 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Pruthvi Kadam — Data Scientist. PySpark, LLMs, and experimentation. Interactive project portfolio." />
+    content="Pruthvi Kadam — Data Scientist. Experimentation, causal inference, MLOps, NLP/RAG, and recommenders, shipped as live demos. Every metric copied from real program output." />
   <title>Pruthvi Kadam — Data Scientist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Front page only: a signature hero you won't see on any project page ---- */
+    .home-hero { position: relative; overflow: hidden; padding-block: clamp(56px, 11vw, 150px) clamp(40px, 7vw, 88px); }
+    .home-hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background:
+        radial-gradient(60% 50% at 88% -8%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+        radial-gradient(40% 40% at -5% 8%, color-mix(in srgb, #c026d3 14%, transparent), transparent 70%);
+    }
+    .home-hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+      background-image: radial-gradient(currentColor 1px, transparent 1.2px);
+      background-size: 26px 26px; color: var(--line-2);
+      -webkit-mask-image: linear-gradient(180deg, #000, transparent 75%);
+      mask-image: linear-gradient(180deg, #000, transparent 75%);
+    }
+    .home-hero h1 { font-size: clamp(2.6rem, 8vw, 5.6rem); letter-spacing: -.045em; }
+    .home-hero h1 .grad {
+      background: linear-gradient(100deg, var(--accent), #c026d3 70%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats { margin-top: clamp(34px, 6vw, 60px); border-top: 1px solid var(--line); padding-top: 26px; }
+
+    .spotlight { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    .spot {
+      position: relative; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 30px;
+      background: var(--surface); overflow: hidden; display: flex; flex-direction: column; min-height: 280px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .spot:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .spot::after {
+      content: ""; position: absolute; right: -60px; top: -60px; width: 240px; height: 240px; z-index: 0;
+      background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+    }
+    .spot > * { position: relative; z-index: 1; }
+    .spot .big { font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.03em; color: var(--accent); margin: 6px 0 2px; }
+    .spot .ttl { font-size: 1.5rem; margin: 14px 0 6px; }
+    .spot .pfoot { margin-top: auto; }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skills .chip { font-size: .82rem; padding: 7px 13px; }
+    @media (max-width: 760px) { .spotlight { grid-template-columns: 1fr; } }
+  </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <h1 class="name">Pruthvi Kadam</h1>
-      <p class="headline">Data Scientist — PySpark &middot; LLMs &middot; Experimentation</p>
-      <p class="tagline">
-        I build and ship interactive data &amp; ML applications. Each project below is a live demo you can use,
-        not a screenshot.
+  <nav class="nav">
+    <a class="brand" href="#top">Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="#work">Work</a>
+      <a class="btn btn-ghost btn-sm" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/in/pruthvi-kadam-480aa7265/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary btn-sm" href="assets/Pruthvi_Kadam_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
+  </nav>
+
+  <header class="home-hero" id="top">
+    <div class="container stack" style="--flow: 22px;">
+      <p class="eyebrow">Data Scientist · Experimentation · Causal · MLOps · NLP</p>
+      <h1>Measured machine learning,<br /><span class="grad">shipped as live demos.</span></h1>
+      <p class="lead">
+        I'm Pruthvi Kadam. I build experimentation, causal-inference, MLOps, NLP/RAG and recommender
+        tools you can actually click — and I report what the data really says, even when a baseline wins.
+        Every number on this site is copied verbatim from real program output.
       </p>
-      <nav class="links" aria-label="Profile links">
-        <a class="btn" href="mailto:pruthvivkadam@gmail.com">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/pruthvi-kadam-480aa7265/" target="_blank"
-          rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/PruthviVKadam" target="_blank" rel="noopener">GitHub</a>
-        <!-- TODO: drop your resume PDF in assets/ and confirm the filename below -->
-        <a class="btn" href="assets/Pruthvi_Kadam_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
-      </nav>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">Explore the work <span class="arrow">→</span></a>
+        <a class="btn" href="assets/Pruthvi_Kadam_Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-row">
+          <div class="stat"><div class="n">11</div><div class="l">data-science projects</div></div>
+          <div class="stat"><div class="n">10</div><div class="l">live, clickable demos</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">DS domains covered</div></div>
+          <div class="stat"><div class="n">0</div><div class="l">fabricated metrics</div></div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading" class="section-title">Projects</h2>
-      <p class="section-sub">Click any live demo — they run in your browser or on a free hosted instance.</p>
+  <main id="work">
+    <!-- Spotlight: the two strongest pieces, given room to breathe -->
+    <section class="section container" style="padding-bottom: 0;">
+      <p class="eyebrow">Spotlight</p>
+      <h2 style="font-size: clamp(1.5rem,3vw,2rem); margin: 8px 0 24px;">The two that say the most in 10 seconds</h2>
+      <div class="spotlight">
+        <a class="spot" href="p/experimentation-lab.html">
+          <span class="pill"><span class="led"></span> Live</span>
+          <div class="big">Peeking inflates false positives 5% → 25%</div>
+          <h3 class="ttl">Experimentation Lab</h3>
+          <p class="pdesc">Design &amp; analyze A/B tests — power, the peeking trap, and CUPED variance reduction, all driveable live.</p>
+          <div class="chips card-tags"><span class="chip">A/B testing</span><span class="chip">statsmodels</span><span class="chip">Streamlit</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
+        <a class="spot" href="p/uplift-studio.html">
+          <span class="pill"><span class="led"></span> Live</span>
+          <div class="big">Top-30% targeting captures 34.2% of incremental visits</div>
+          <h3 class="ttl">Uplift Studio</h3>
+          <p class="pdesc">Causal / CATE meta-learners scored by Qini — who to treat, not just whether treatment works on average.</p>
+          <div class="chips card-tags"><span class="chip">causal inference</span><span class="chip">scikit-uplift</span><span class="chip">Qini</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Full catalogue, tiered by hiring-visibility -->
+    <section class="section container">
+      <p class="eyebrow">All projects</p>
+      <h2 style="font-size: clamp(1.5rem,3vw,2rem); margin: 8px 0 6px;">Eleven projects, ten you can click</h2>
+      <p class="muted" style="margin-bottom: 28px;">Each opens a dedicated case study. Metrics are copied from each project's real output.</p>
 
       <div class="grid">
 
-        <!-- Pinned: StarCoder2 C# instruction-tuning data pipeline -->
-        <article class="card pinned">
-          <div class="card-top">
-            <span class="pin" title="Pinned">★ Pinned</span>
-            <span class="status status-done">Repo</span>
-          </div>
-          <h3 class="card-title">StarCoder2 C# Instruction-Tuning Pipeline</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> High-quality instruction-tuning data for code LLMs is scarce for languages
-              like C#.</li>
-            <li><strong>Approach:</strong> Adapted StarCoder2's Self-OSS-Instruct self-alignment pipeline to C# over The
-              Stack v2 — seed curation (Tree-sitter filtering + dedup), S→C→I→R generation with StarCoder2-15B via vLLM,
-              and heuristic self-validation. (3-person course project.)</li>
-            <li><strong>Result:</strong> A cleaned C# instruction-response dataset, published on Hugging Face, ready to
-              fine-tune instruction-following code models.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">vLLM</span>
-            <span class="badge">Tree-sitter</span>
-            <span class="badge">Hugging Face</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://github.com/PruthviVKadam/starcoder2-csharp-instruction-tuning"
-              target="_blank" rel="noopener">Repository →</a>
+        <!-- Pinned -->
+        <article class="proj span-12" style="--accent:#8957e5;">
+          <span class="rank">★ Pinned · team project</span>
+          <h3 class="ptitle">StarCoder2 C# Instruction-Tuning Pipeline</h3>
+          <div class="pmetric">A cleaned C# instruction dataset, published on Hugging Face</div>
+          <p class="pdesc">Adapted StarCoder2's Self-OSS-Instruct self-alignment pipeline to C# over The Stack v2 — Tree-sitter seed curation, S→C→I→R generation with StarCoder2-15B via vLLM, heuristic self-validation.</p>
+          <div class="chips card-tags"><span class="chip">vLLM</span><span class="chip">Tree-sitter</span><span class="chip">Hugging Face</span></div>
+          <div class="pfoot">
+            <span class="pill">Repo</span>
+            <a class="go" href="https://github.com/PruthviVKadam/starcoder2-csharp-instruction-tuning" target="_blank" rel="noopener">Repository <span class="arrow">→</span></a>
           </div>
         </article>
 
-        <!-- P1 Experimentation Lab -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">A/B Testing</span>
-            <span class="status status-progress">In progress</span>
-          </div>
-          <h3 class="card-title">Experimentation Lab</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Designing and reading A/B tests correctly (power, peeking, variance reduction)
-              is easy to get wrong.</li>
-            <li><strong>Approach:</strong> Interactive Streamlit app — sample-size designer, two-proportion analyzer,
-              and a peeking/CUPED pitfalls simulator.</li>
-            <li><strong>Result:</strong> A tool that turns experimentation theory into something you can drive live.
-            </li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">Streamlit</span>
-            <span class="badge">statsmodels</span>
-            <span class="badge">SciPy</span>
-            <span class="badge">Plotly</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://ab-lab-test.streamlit.app/" target="_blank" rel="noopener">Live demo
-              →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/ab-lab" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- Credit Risk -->
+        <a class="proj span-6" href="p/credit-risk.html" style="--accent:#1f9d72;">
+          <span class="rank">Finance / ML · Live</span>
+          <h3 class="ptitle">Credit Risk Scorer</h3>
+          <div class="pmetric">Held-out AUC-ROC 0.77, with per-decision SHAP</div>
+          <p class="pdesc">XGBoost served via FastAPI + Docker, with a cost-based approve/decline threshold explorer and "why this decision" SHAP bars.</p>
+          <div class="chips card-tags"><span class="chip">XGBoost</span><span class="chip">SHAP</span><span class="chip">FastAPI</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- Uplift Studio (causal / CATE) -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">Causal ML</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Uplift Studio</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> An A/B test tells you <em>if</em> a treatment works on average — not
-              <em>who</em> to target, or who the "sleeping dogs" are that you hurt by contacting.</li>
-            <li><strong>Approach:</strong> Uplift meta-learners (S/T/DDR) on the Hillstrom campaign, evaluated with
-              Qini/AUUC — not accuracy — behind a live targeting-policy simulator.</li>
-            <li><strong>Result:</strong> Targeting the top 30% by predicted uplift captures 34.2% of incremental visits
-              (1.14× a random policy).</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">scikit-uplift</span>
-            <span class="badge">Streamlit</span>
-            <span class="badge">Plotly</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://PruthviVKadam-uplift-studio.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/uplift-studio" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- 10-K RAG -->
+        <a class="proj span-6" href="p/tenk-rag.html" style="--accent:#b9770e;">
+          <span class="rank">LLM / RAG · Live</span>
+          <h3 class="ptitle">10-K RAG Analyst</h3>
+          <div class="pmetric">Cited answers · hit-rate@5 80%, MRR 0.71</div>
+          <p class="pdesc">RAG over real SEC 10-K filings — item-aware chunking → ChromaDB → grounded answers that cite the Item, with a published retrieval eval.</p>
+          <div class="chips card-tags"><span class="chip">RAG</span><span class="chip">ChromaDB</span><span class="chip">Gradio</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- P2 Credit Risk Scorer -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">Finance / ML</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Credit Risk Scorer</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Default-risk models need to be explainable and tied to a business threshold,
-              not just accurate.</li>
-            <li><strong>Approach:</strong> XGBoost served via FastAPI + Docker, with per-decision SHAP explanations and
-              a cost-based threshold explorer.</li>
-            <li><strong>Result:</strong> A scoring API where you can see <em>why</em> each decision was made —
-              held-out AUC-ROC 0.77 with a live approval/recall threshold explorer.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">XGBoost</span>
-            <span class="badge">SHAP</span>
-            <span class="badge">FastAPI</span>
-            <span class="badge">Docker</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://PruthviVKadam-credit-risk.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/credit-risk" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- Model Monitor -->
+        <a class="proj span-6" href="p/model-monitor.html" style="--accent:#e03131;">
+          <span class="rank">ML Monitoring · Live</span>
+          <h3 class="ptitle">Model Monitor</h3>
+          <div class="pmetric">Drift caught in 2 batches at 0% false alarms</div>
+          <p class="pdesc">PSI/KS/JSD drift + prediction-drift + performance over the live Credit Risk model — while AUC stayed blind and the real default rate doubled.</p>
+          <div class="chips card-tags"><span class="chip">drift</span><span class="chip">scipy</span><span class="chip">MLOps</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- Model Monitor (drift / MLOps) -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">ML Monitoring</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Model Monitor</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Models rot silently — inputs drift and the scored population
-              changes, but teams find out from a business metric weeks later.</li>
-            <li><strong>Approach:</strong> Drift (PSI/KS/JSD) + prediction-drift + performance monitoring
-              over the live Credit Risk model, with an injected-drift detection study.</li>
-            <li><strong>Result:</strong> Caught an injected covariate shift in 2 batches at 0% false
-              alarms — while AUC stayed blind (0.83→0.85) and the real default rate doubled.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">XGBoost</span>
-            <span class="badge">scipy</span>
-            <span class="badge">Streamlit</span>
-            <span class="badge">Docker</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://PruthviVKadam-model-monitor.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/model-monitor" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- Forecasting -->
+        <a class="proj span-6" href="p/forecast-studio.html" style="--accent:#3fb950;">
+          <span class="rank">Time Series · Live</span>
+          <h3 class="ptitle">Forecasting Studio</h3>
+          <div class="pmetric">An honest leaderboard where ARIMA barely beats naive</div>
+          <p class="pdesc">Walk-forward bake-off (ARIMA / Prophet / XGBoost vs naive baselines) with leakage-free backtesting and MASE/MAPE/RMSE.</p>
+          <div class="chips card-tags"><span class="chip">Dash</span><span class="chip">statsmodels</span><span class="chip">Prophet</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- P3 10-K RAG Analyst -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">LLM / RAG</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">10-K RAG Analyst</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Answering questions over dense SEC filings requires grounded, cited answers —
-              and a way to measure them.</li>
-            <li><strong>Approach:</strong> RAG over real 10-Ks — Item-aware chunking → ChromaDB (all-MiniLM-L6-v2) →
-              grounded, cited answers in Gradio, with a published retrieval evaluation.</li>
-            <li><strong>Result:</strong> Every answer cites its source Item, plus a reproducible eval (hit-rate 80%,
-              MRR 0.71) most demos never show.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">RAG</span>
-            <span class="badge">ChromaDB</span>
-            <span class="badge">Gradio</span>
-            <span class="badge">SEC EDGAR</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://PruthviVKadam-tenk-rag.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/tenk-rag" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- Recsys -->
+        <a class="proj span-4" href="p/recsys-studio.html" style="--accent:#e64980;">
+          <span class="rank">Recommenders · Live</span>
+          <h3 class="ptitle">Recsys Studio</h3>
+          <div class="pmetric">ALS trades accuracy for 7.5× catalog coverage</div>
+          <p class="pdesc">Implicit-feedback recommenders judged by ranking (NDCG/Recall/MAP) on a leakage-free temporal split.</p>
+          <div class="chips card-tags"><span class="chip">ALS</span><span class="chip">ranking</span></div>
+          <div class="pfoot"><span class="go">Case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- P4 Forecasting Studio -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">Time Series</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Forecasting Studio</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Forecasting is full of traps — leakage, invalid CV, and fancy models that lose
-              to a naive baseline.</li>
-            <li><strong>Approach:</strong> Plotly Dash app benchmarking ARIMA, Prophet, and gradient-boosted models with
-              leakage-free walk-forward backtesting.</li>
-            <li><strong>Result:</strong> An honest leaderboard (MASE/MAPE/RMSE) over market series — where ARIMA only
-              barely beats the naive baseline.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Dash</span>
-            <span class="badge">statsmodels</span>
-            <span class="badge">Prophet</span>
-            <span class="badge">XGBoost</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://pk759-forecast-studio.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/forecast-studio" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- SQL Copilot -->
+        <a class="proj span-4" href="p/sql-copilot.html" style="--accent:#0ca678;">
+          <span class="rank">LLM / SQL · Live</span>
+          <h3 class="ptitle">SQL Copilot</h3>
+          <div class="pmetric">12/12 destructive ops blocked, 4/4 hallucinations flagged</div>
+          <p class="pdesc">Schema-aware NL→SQL over DuckDB with a parse-time guardrail and binder-based hallucination detection.</p>
+          <div class="chips card-tags"><span class="chip">sqlglot</span><span class="chip">DuckDB</span></div>
+          <div class="pfoot"><span class="go">Case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- Recsys Studio (ranking eval, temporal split) -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">Recommenders</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Recsys Studio</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Most portfolio recommenders report RMSE on a random split —
-              which rewards a number nobody ranks by and leaks the future into the past.</li>
-            <li><strong>Approach:</strong> Implicit-feedback recommenders (popularity &rarr; item-kNN
-              &rarr; ALS) scored by NDCG/Recall/MAP on a leakage-free global temporal split, with
-              catalog coverage and novelty.</li>
-            <li><strong>Result:</strong> The popularity baseline wins raw accuracy (NDCG@10 0.124);
-              ALS trades it for 7.5&times; the catalog coverage — baselines are hard to beat, shown
-              honestly.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">implicit (ALS)</span>
-            <span class="badge">scikit-learn</span>
-            <span class="badge">Streamlit</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://pk759-recsys-studio.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/recsys-studio" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- Active Learning -->
+        <a class="proj span-4" href="p/active-learning-lab.html" style="--accent:#1c7ed6;">
+          <span class="rank">Data-Centric ML · Live</span>
+          <h3 class="ptitle">Active Learning Lab</h3>
+          <div class="pmetric">Target accuracy with 79% fewer labels</div>
+          <p class="pdesc">Weak supervision + active learning on SMS spam — uncertainty sampling vs random, on a labels-vs-accuracy curve.</p>
+          <div class="chips card-tags"><span class="chip">weak supervision</span><span class="chip">sklearn</span></div>
+          <div class="pfoot"><span class="go">Case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- P5 SQL Workbench -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">SQL</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Browser SQL Workbench</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Practicing advanced SQL (window functions, cohorts) usually needs a server.
-            </li>
-            <li><strong>Approach:</strong> 100% client-side DuckDB-WASM + CodeMirror over a 170K-row synthetic
-              e-commerce dataset, with 10 guided challenges (every solution verified in CI).</li>
-            <li><strong>Result:</strong> A zero-backend workbench that runs instantly on GitHub Pages and never sleeps.
-            </li>
-          </ul>
-          <div class="badges">
-            <span class="badge">JavaScript</span>
-            <span class="badge">DuckDB-WASM</span>
-            <span class="badge">CodeMirror</span>
-            <span class="badge">Parquet</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://pruthvivkadam.github.io/sql-workbench/" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/sql-workbench" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
+        <!-- SQL Workbench -->
+        <a class="proj span-6" href="p/sql-workbench.html" style="--accent:#d4a017;">
+          <span class="rank">SQL · Live</span>
+          <h3 class="ptitle">Browser SQL Workbench</h3>
+          <div class="pmetric">DuckDB in the browser · 10 CI-verified challenges · never sleeps</div>
+          <p class="pdesc">100% client-side DuckDB-WASM + CodeMirror over a 170K-row synthetic dataset — zero backend, instant, runs on GitHub Pages.</p>
+          <div class="chips card-tags"><span class="chip">DuckDB-WASM</span><span class="chip">JavaScript</span></div>
+          <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+        </a>
 
-        <!-- SQL Copilot (text-to-SQL + guardrails) -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">LLM / SQL</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">SQL Copilot</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Natural-language-to-SQL is high-value but easy to ship
-              dangerously — it can mutate data or hallucinate columns a compliance team would never allow.</li>
-            <li><strong>Approach:</strong> Schema-aware NL→SQL over DuckDB with a parse-time guardrail
-              (sqlglot — read-only SELECT only) and binder-based hallucination detection.</li>
-            <li><strong>Result:</strong> Blocks 12/12 destructive ops, flags 4/4 hallucinated queries,
-              and 15/15 gold questions execute — safety measured, not promised.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">DuckDB</span>
-            <span class="badge">sqlglot</span>
-            <span class="badge">Streamlit</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://pk759-sql-copilot.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/sql-copilot" target="_blank"
-              rel="noopener">Repository →</a>
-          </div>
-        </article>
-
-        <!-- Active Learning Lab (data-centric ML) -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">Data-Centric ML</span>
-            <span class="status status-done">Live</span>
-          </div>
-          <h3 class="card-title">Active Learning Lab</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> the bottleneck in most ML isn't the model — it's
-              <em>labels</em>. Labeling random examples wastes budget on cases the model already
-              gets right.</li>
-            <li><strong>Approach:</strong> weak supervision (labeling functions &rarr; a label-free
-              label model) bootstraps labels with zero manual annotation; active learning
-              (uncertainty sampling) queries the least-certain examples, vs. a random baseline.</li>
-            <li><strong>Result:</strong> uncertainty sampling hits spam-F1 0.85 with
-              <strong>120 labels vs random's 580 — 79% fewer</strong> — and matches the
-              full-supervision ceiling with ~5% of the labels.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">scikit-learn</span>
-            <span class="badge">Weak Supervision</span>
-            <span class="badge">Streamlit</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link" href="https://pruthvikadam-active-learning-lab.hf.space" target="_blank"
-              rel="noopener">Live demo →</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/active-learning-lab"
-              target="_blank" rel="noopener">Repository →</a>
-          </div>
-        </article>
-
-        <!-- P6 HR Attrition Dashboard -->
-        <article class="card">
-          <div class="card-top">
-            <span class="tag">BI / Tableau</span>
-            <span class="status status-progress">In progress</span>
-          </div>
-          <h3 class="card-title">HR Attrition Dashboard</h3>
-          <ul class="pap">
-            <li><strong>Problem:</strong> Where is an organization losing people, and what does it cost?</li>
-            <li><strong>Approach:</strong> Interactive Tableau Public dashboard over 1,470 employee records with KPI
-              cards, LOD comparisons, and risk views.</li>
-            <li><strong>Result:</strong> A client-facing dashboard quantifying attrition drivers (16.1% overall;
-              Sales highest at 20.6%) and replacement cost.</li>
-          </ul>
-          <div class="badges">
-            <span class="badge">Tableau</span>
-            <span class="badge">Data Viz</span>
-          </div>
-          <div class="card-links">
-            <a class="card-link disabled" aria-disabled="true">Live demo (building in Tableau)</a>
-            <a class="card-link" href="https://github.com/PruthviVKadam/hr-attrition-tableau" target="_blank"
-              rel="noopener">Repository →</a>
+        <!-- HR Attrition (in progress) -->
+        <article class="proj span-6" style="--accent:#7048e8; opacity: .9;">
+          <span class="rank">BI / Tableau · In progress</span>
+          <h3 class="ptitle">HR Attrition Dashboard</h3>
+          <div class="pmetric">Quantifying attrition drivers (16.1% overall; Sales 20.6%)</div>
+          <p class="pdesc">Interactive Tableau Public dashboard over 1,470 employee records with KPI cards, LOD comparisons, and replacement-cost views.</p>
+          <div class="chips card-tags"><span class="chip">Tableau</span><span class="chip">Data Viz</span></div>
+          <div class="pfoot">
+            <span class="pill is-progress"><span class="led"></span> Building in Tableau</span>
+            <a class="go" href="https://github.com/PruthviVKadam/hr-attrition-tableau" target="_blank" rel="noopener">Repository <span class="arrow">→</span></a>
           </div>
         </article>
 
       </div>
     </section>
+
+    <!-- ATS-friendly skills strip -->
+    <section class="section container" style="padding-top: 0;">
+      <p class="eyebrow">What I work with</p>
+      <h2 style="font-size: clamp(1.3rem,2.5vw,1.7rem); margin: 8px 0 18px;">Tools &amp; methods across the projects</h2>
+      <div class="skills">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">A/B testing</span>
+        <span class="chip">Causal inference</span><span class="chip">XGBoost</span><span class="chip">SHAP</span>
+        <span class="chip">scikit-learn</span><span class="chip">RAG / LLMs</span><span class="chip">ChromaDB</span>
+        <span class="chip">Drift / MLOps</span><span class="chip">Time-series forecasting</span><span class="chip">Recommender systems</span>
+        <span class="chip">Active learning</span><span class="chip">FastAPI</span><span class="chip">Docker</span>
+        <span class="chip">DuckDB</span><span class="chip">Streamlit</span><span class="chip">Plotly / Dash</span>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>Built with plain HTML/CSS, hosted on GitHub Pages.
-        <a href="https://github.com/PruthviVKadam/PruthviVKadam.github.io" target="_blank" rel="noopener">Source</a>.
-      </p>
+  <footer class="foot">
+    <div class="container" style="display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center;">
+      <span>Built static on GitHub Pages — no framework, no tracking. Every metric is from real output.</span>
+      <span><a href="mailto:pruthvivkadam@gmail.com">pruthvivkadam@gmail.com</a> · <a href="https://github.com/PruthviVKadam/PruthviVKadam.github.io" target="_blank" rel="noopener">Source</a></span>
     </div>
   </footer>
 </body>
