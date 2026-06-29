@@ -53,7 +53,10 @@
 
     .skills { display: flex; flex-wrap: wrap; gap: 10px; }
     .skills .chip { font-size: .82rem; padding: 7px 13px; }
-    @media (max-width: 760px) { .spotlight { grid-template-columns: 1fr; } }
+    .flagship-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: center; }
+    .flagship-media img { width: 100%; border: 1px solid var(--line); border-radius: var(--r); display: block; }
+    .flagship-body .rank { color: var(--accent); }
+    @media (max-width: 760px) { .spotlight, .flagship-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 
@@ -83,8 +86,8 @@
       </div>
       <div class="hero-stats">
         <div class="stat-row">
-          <div class="stat"><div class="n">11</div><div class="l">data-science projects</div></div>
-          <div class="stat"><div class="n">10</div><div class="l">live, clickable demos</div></div>
+          <div class="stat"><div class="n">12</div><div class="l">data-science projects</div></div>
+          <div class="stat"><div class="n">11</div><div class="l">live, clickable demos</div></div>
           <div class="stat"><div class="n">6</div><div class="l">DS domains covered</div></div>
           <div class="stat"><div class="n">0</div><div class="l">fabricated metrics</div></div>
         </div>
@@ -124,6 +127,23 @@
       <p class="muted" style="margin-bottom: 28px;">Each opens a dedicated case study. Metrics are copied from each project's real output.</p>
 
       <div class="grid">
+
+        <!-- SkyWatt — flagship DS-Project, newly deployed -->
+        <a class="proj span-12" href="p/skywatt.html" style="--accent:#f5b301;">
+          <div class="flagship-grid">
+            <div class="flagship-media">
+              <img src="assets/skywatt.png" alt="SkyWatt live UI — sky image with cloud overlay, a predicted-power gauge, and a model-vs-persistence chart" loading="lazy" />
+            </div>
+            <div class="flagship-body">
+              <span class="rank">★ New flagship · Computer Vision · Live</span>
+              <h3 class="ptitle">SkyWatt — Sky-to-Power Nowcasting</h3>
+              <div class="pmetric">CNN beats persistence — MAE 0.48 kW vs 1.55, at every horizon</div>
+              <p class="pdesc">A full-stack (React + FastAPI) solar nowcaster: a CNN reads a sky-image stack, a cloud-segmentation overlay blooms, and a physically-bounded power meter swings the moment a cloud crosses the sun.</p>
+              <div class="chips card-tags"><span class="chip">PyTorch</span><span class="chip">Computer Vision</span><span class="chip">FastAPI</span><span class="chip">React</span></div>
+              <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+            </div>
+          </div>
+        </a>
 
         <!-- Pinned -->
         <article class="proj span-12" style="--accent:#8957e5;">

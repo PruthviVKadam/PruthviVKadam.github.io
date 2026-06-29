@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkyWatt — sky-image → solar power nowcasting. CNN over a sky-image stack, physically bounded, beats persistence on cloud transitions. Full-stack React + FastAPI. By Pruthvi Kadam." />
+  <title>SkyWatt — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: SKY/LIGHT — dark, solar-yellow accent; real product screenshot as the hero. */
+    body { --accent: #f5b301; }
+    .p-hero { text-align: center; padding-block: clamp(40px, 7vw, 86px) clamp(20px,3vw,32px); }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(60% 60% at 50% -10%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%); }
+    .p-hero .lead { margin-inline:auto; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+    .shot { margin: 0 auto; max-width: 1100px; }
+    .shot img { width:100%; border:1px solid var(--line-2); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); display:block; }
+    .shot figcaption { font-family: var(--mono); font-size:.74rem; color: var(--muted); text-align:center; margin-top:12px; }
+  </style>
+</head>
+
+<body class="theme-dark">
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://huggingface.co/spaces/pruthvikadam/skywatt/tree/main" target="_blank" rel="noopener">Code</a>
+      <a class="btn btn-primary btn-sm" href="https://pruthvikadam-skywatt.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container">
+      <p class="eyebrow">Computer Vision + Time Series · Full-stack · Live</p>
+      <h1 class="p-title" style="max-width:18ch; margin-inline:auto;">Sky image in, <span style="color:var(--accent)">solar power</span> out.</h1>
+      <p class="lead">A short-term PV nowcaster: a CNN reads a stack of sky images, a cloud-segmentation overlay blooms, and a <strong>physically-bounded</strong> power meter swings — beating persistence exactly when a cloud rolls across the sun. React + FastAPI, served on plain CPU.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://pruthvikadam-skywatt.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+        <a class="btn" href="https://huggingface.co/spaces/pruthvikadam/skywatt/tree/main" target="_blank" rel="noopener">View code</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container" style="padding-top:0;">
+    <figure class="shot">
+      <img src="../assets/skywatt.png" alt="SkyWatt UI: sky image with cloud overlay, a predicted-power gauge (13.7 kW), and a model-vs-persistence chart over a recorded day with cloud-transition markers" loading="lazy" />
+      <figcaption>The live app — sky panel + cloud-segmentation, a physically-bounded power gauge, and a recorded-day scrubber.</figcaption>
+    </figure>
+  </section>
+
+  <main>
+    <section class="section container" style="padding-top:0;">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">Solar output swings the instant a cloud occludes the sun. "Next = current output" (persistence) is a strong short-horizon baseline; beating it needs to <em>see</em> the cloud coming.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">A CNN over a 3-frame sky-image stack + a context MLP predicts the clearness index; a physics layer bounds every output (0 ≤ power ≤ clear-sky ceiling, zero at night). Served CPU-only behind a timeout.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">SkyFusion beats persistence on overall error and on the cloud-transition slice that actually matters — at every horizon — with predictions that can never violate physics.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Skill over persistence (held-out test)</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">0.48 kW</div><div class="l">SkyFusion MAE vs persistence 1.55</div></div>
+        <div class="metric"><div class="n">2.08</div><div class="l">cloud-transition MAE vs persistence 2.71</div></div>
+        <div class="metric"><div class="n">every horizon</div><div class="l">beats persistence at 15 / 30 / 60 min</div></div>
+        <div class="metric"><div class="n">68 / 16</div><div class="l">Python files / tests; CPU-served</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>The image is the edge.</b> Clouds advect with a per-day wind, so the cloud about to occlude the sun is visible upwind in the frame — solvable by a vision model, invisible to persistence.</p>
+        <p class="insight"><b>Physics is a guardrail, not a hope.</b> Every prediction passes one bounds layer; a value that would be negative, above capacity, or non-zero at night is clamped and the reason reported — never shown raw.</p>
+        <p class="insight"><b>Benchmark on the slice that matters.</b> Average error flatters everyone on calm hours; the honest test is the cloud-ramp events, where SkyFusion wins at every horizon.</p>
+        <p class="insight"><b>Ships on CPU.</b> Training may use a GPU, but the served model runs on plain CPU behind a timeout — the repo (and this demo) run without a GPU.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">PyTorch (CPU)</span><span class="chip">CNN</span><span class="chip">FastAPI</span>
+        <span class="chip">React + Vite + TS</span><span class="chip">Tailwind</span><span class="chip">Docker</span>
+      </div>
+      <p class="muted" style="margin-top:14px; font-size:.85rem;">Illustrative demo on synthetic sky/PV stand-ins. Reference dataset: Stanford SKIPP'D (CC BY); no dataset imagery is redistributed.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://pruthvikadam-skywatt.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/pruthvikadam/skywatt/tree/main" target="_blank" rel="noopener">Code</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>
