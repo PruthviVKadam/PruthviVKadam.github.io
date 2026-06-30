@@ -86,8 +86,8 @@
       </div>
       <div class="hero-stats">
         <div class="stat-row">
-          <div class="stat"><div class="n">13</div><div class="l">data-science projects</div></div>
-          <div class="stat"><div class="n">12</div><div class="l">live, clickable demos</div></div>
+          <div class="stat"><div class="n">14</div><div class="l">data-science projects</div></div>
+          <div class="stat"><div class="n">13</div><div class="l">live, clickable demos</div></div>
           <div class="stat"><div class="n">6</div><div class="l">DS domains covered</div></div>
           <div class="stat"><div class="n">0</div><div class="l">fabricated metrics</div></div>
         </div>
@@ -157,6 +157,23 @@
               <div class="pmetric">Peak-aware forecasting — MAPE 1.61% vs 5.04, peak within ~4h</div>
               <p class="pdesc">A full-stack (React + FastAPI) grid control room: drag a live what-if weather dial and watch the 48h load curve + peak-risk meter respond. Streams 2.1M rows out-of-core at ~41 MB.</p>
               <div class="chips card-tags"><span class="chip">LightGBM</span><span class="chip">DuckDB</span><span class="chip">FastAPI</span><span class="chip">React</span></div>
+              <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Atmosphere — flagship DS-Project, newly deployed -->
+        <a class="proj span-12" href="p/atmosphere.html" style="--accent:#2dd4bf;">
+          <div class="flagship-grid">
+            <div class="flagship-media">
+              <img src="assets/atmosphere.png" alt="Atmosphere live UI — a dark MapLibre map with an AQI station marker, a 24h forecast scrubber, and PM2.5/O3/NO2 toggles" loading="lazy" />
+            </div>
+            <div class="flagship-body">
+              <span class="rank">★ New flagship · Reliability-first · Live</span>
+              <h3 class="ptitle">Atmosphere — Air-Quality Forecasting</h3>
+              <div class="pmetric">Honest certification — O₃ MAE 2.81 vs 10.10; PM₂.₅ deliberately not promoted</div>
+              <p class="pdesc">A full-stack (React + MapLibre + FastAPI) 24h air-quality explorer that fails soft when APIs go dark and only serves a model that genuinely beats its baselines — per pollutant, per horizon.</p>
+              <div class="chips card-tags"><span class="chip">HistGradientBoosting</span><span class="chip">MapLibre</span><span class="chip">FastAPI</span><span class="chip">React</span></div>
               <div class="pfoot"><span class="go">Open case study <span class="arrow">→</span></span></div>
             </div>
           </div>

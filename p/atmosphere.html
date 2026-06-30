@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Atmosphere — reliability-first urban air-quality forecasting on an interactive MapLibre map. Per-pollutant HistGradientBoosting, honestly certified against baselines. Full-stack React + FastAPI. By Pruthvi Kadam." />
+  <title>Atmosphere — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: MAP / ATMOSPHERE — dark, teal accent; real map screenshot as the hero. */
+    body { --accent: #2dd4bf; }
+    .p-hero { text-align: center; padding-block: clamp(40px, 7vw, 86px) clamp(20px,3vw,32px); }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(60% 60% at 50% -10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
+    .p-hero .lead { margin-inline:auto; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+    .shot { margin: 0 auto; max-width: 1100px; }
+    .shot img { width:100%; border:1px solid var(--line-2); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); display:block; }
+    .shot figcaption { font-family: var(--mono); font-size:.74rem; color: var(--muted); text-align:center; margin-top:12px; }
+  </style>
+</head>
+
+<body class="theme-dark">
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://huggingface.co/spaces/1luciferxlucifer1/atmosphere/tree/main" target="_blank" rel="noopener">Code</a>
+      <a class="btn btn-primary btn-sm" href="https://1luciferxlucifer1-atmosphere.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container">
+      <p class="eyebrow">Time Series · Reliability · Full-stack · Live</p>
+      <h1 class="p-title" style="max-width:19ch; margin-inline:auto;">City air quality, <span style="color:var(--accent)">24 hours</span> ahead — and honest about it.</h1>
+      <p class="lead">A reliability-first air-quality explorer: scrub a 24h timeline on a live map and watch PM₂.₅ / O₃ / NO₂ forecasts update — built to fail soft when public APIs go dark and to <strong>only serve a model that genuinely beats its baselines</strong>.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://1luciferxlucifer1-atmosphere.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+        <a class="btn" href="https://huggingface.co/spaces/1luciferxlucifer1/atmosphere/tree/main" target="_blank" rel="noopener">View code</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container" style="padding-top:0;">
+    <figure class="shot">
+      <img src="../assets/atmosphere.png" alt="Atmosphere UI: a dark MapLibre map with an AQI station marker, a Now-to-+24h forecast scrubber, and PM2.5 / O3 / NO2 toggles" loading="lazy" />
+      <figcaption>The live app — a MapLibre map with AQI stations, a 24h forecast scrubber, and per-pollutant toggles.</figcaption>
+    </figure>
+  </section>
+
+  <main>
+    <section class="section container" style="padding-top:0;">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">A forecast app is only as trustworthy as its honesty: most demos overstate accuracy, hide stale data, and crash when a public sensor API goes dark.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Per-pollutant, per-horizon HistGradientBoosting (direct multi-step) over OpenAQ/AirNow/Open-Meteo, scored by walk-forward CV against persistence <em>and</em> seasonal baselines, behind a resilient FastAPI + MapLibre frontend.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A model is promoted <em>only</em> for a pollutant it beats at every horizon; everything carries a freshness stamp and degrades soft. Honest by construction.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Certified per pollutant (MAE, walk-forward)</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">2.81</div><div class="l">O₃ model MAE vs persistence 10.10 — certified ✅</div></div>
+        <div class="metric"><div class="n">6.25</div><div class="l">NO₂ model MAE vs persistence 11.25 — certified ✅</div></div>
+        <div class="metric"><div class="n">not promoted</div><div class="l">PM₂.₅ ties the 24h echo → served as persistence (honest)</div></div>
+        <div class="metric"><div class="n">&lt; 800 ms</div><div class="l">forecast latency budget; freshness stamped everywhere</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>"Beats baseline" is earned, not assumed.</b> O₃ and NO₂ clear both baselines at every horizon and are served by the model; <b>PM₂.₅ only ties the 24h "same hour yesterday" echo, so it is deliberately NOT promoted</b> — the API serves its persistence forecast with <code>beats_baseline=false</code>.</p>
+        <p class="insight"><b>Reliability is the headline feature.</b> Every external call has timeout + retry + circuit breaker + cache; every data-bound component has loading / empty / error / stale states. No silent failures, no infinite spinners.</p>
+        <p class="insight"><b>Freshness is non-negotiable.</b> A <code>data_as_of</code> stamp flows from ETL to UI, and interpolated values are flagged — the user always knows how fresh (and how real) what they're seeing is.</p>
+        <p class="insight"><b>Direct multi-step, not recursive.</b> A separate model per horizon predicts the change from the current value — avoiding the error compounding that sinks recursive forecasts.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">HistGradientBoosting</span><span class="chip">FastAPI</span><span class="chip">DuckDB</span>
+        <span class="chip">React + MapLibre</span><span class="chip">TypeScript</span><span class="chip">Docker</span>
+      </div>
+      <p class="muted" style="margin-top:14px; font-size:.85rem;">Reproducible on a deterministic synthetic backfill run through the same validation pipeline as live data. OpenAQ / Open-Meteo (CC BY); US EPA AirNow (public domain).</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://1luciferxlucifer1-atmosphere.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/1luciferxlucifer1/atmosphere/tree/main" target="_blank" rel="noopener">Code</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>
