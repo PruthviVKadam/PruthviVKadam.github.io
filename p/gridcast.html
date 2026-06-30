@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GridCast — peak-aware electricity-demand forecasting as a grid control room, with a live what-if weather dial. 2.1M-row streaming, LightGBM, full-stack React + FastAPI. By Pruthvi Kadam." />
+  <title>GridCast — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: CONTROL ROOM — dark, teal accent; real product screenshot as the hero. */
+    body { --accent: #20c997; }
+    .p-hero { text-align: center; padding-block: clamp(40px, 7vw, 86px) clamp(20px,3vw,32px); }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(60% 60% at 50% -10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
+    .p-hero .lead { margin-inline:auto; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+    .shot { margin: 0 auto; max-width: 1100px; }
+    .shot img { width:100%; border:1px solid var(--line-2); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); display:block; }
+    .shot figcaption { font-family: var(--mono); font-size:.74rem; color: var(--muted); text-align:center; margin-top:12px; }
+  </style>
+</head>
+
+<body class="theme-dark">
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://huggingface.co/spaces/pruthvikadam/gridcast/tree/main" target="_blank" rel="noopener">Code</a>
+      <a class="btn btn-primary btn-sm" href="https://pruthvikadam-gridcast.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container">
+      <p class="eyebrow">Time Series · Scale · Full-stack · Live</p>
+      <h1 class="p-title" style="max-width:20ch; margin-inline:auto;">Tomorrow's load curve — and the <span style="color:var(--accent)">peak</span> you actually care about.</h1>
+      <p class="lead">A peak-aware electricity-demand forecaster presented as a grid control room: drag the weather dial and watch the load curve and a peak-risk meter respond live — judged on <strong>catching peaks</strong>, not just average error.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://pruthvikadam-gridcast.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+        <a class="btn" href="https://huggingface.co/spaces/pruthvikadam/gridcast/tree/main" target="_blank" rel="noopener">View code</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container" style="padding-top:0;">
+    <figure class="shot">
+      <img src="../assets/gridcast.png" alt="GridCast UI: a 48h system-load forecast with a p10–p90 band and peak markers, a peak-risk gauge, and live what-if weather dials" loading="lazy" />
+      <figcaption>The live app — 48h load forecast with prediction band + peak markers, a peak-risk gauge, and what-if weather dials.</figcaption>
+    </figure>
+  </section>
+
+  <main>
+    <section class="section container" style="padding-top:0;">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">Grid operators care about the <em>peak</em> — when and how high demand spikes. Naive baselines just repeat yesterday and badly miss weather-driven peaks; raw MAPE hides that.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Stream a multi-million-row load series chunked to columnar Parquet (queried out-of-core via DuckDB), train weather-aware LightGBM quantile models, and score them on peak-capture metrics, not just average error.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A control room with a real <code>/whatif</code> endpoint and an honest prediction band — where the model lands the peak within ~4 hours and the baselines don't.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Peaks over averages, at scale</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">1.61%</div><div class="l">LightGBM MAPE vs seasonal-naive 5.04%</div></div>
+        <div class="metric"><div class="n">0.91</div><div class="l">peak-hour recall (vs 0.83 baseline)</div></div>
+        <div class="metric"><div class="n">3.9 h</div><div class="l">peak-timing error (vs 9.9 h baseline)</div></div>
+        <div class="metric"><div class="n">~41 MB</div><div class="l">memory to ingest 2.1M rows (budget 512 MB)</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Scale is a discipline, not a dataset size.</b> The 2.1M-row ingest peaks at ~41 MB because memory scales with the streaming <em>chunk</em>, not the row count — a test asserts 4× the rows costs nowhere near 4× the memory.</p>
+        <p class="insight"><b>Average error flatters the wrong thing.</b> The naive baselines look fine on MAPE yet miss weather-driven peaks by ~10 hours; scoring on peak recall + timing is what makes the model's win real.</p>
+        <p class="insight"><b>No naked forecasts.</b> Every prediction renders with a calibrated p10–p90 interval (coverage ≈ 0.75) — a single line is forbidden in both the API and the UI.</p>
+        <p class="insight"><b>Interactivity is wired to the model.</b> The what-if weather dial hits a real <code>/whatif</code> endpoint backed by a fast surrogate, not a faked animation.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">LightGBM</span><span class="chip">DuckDB</span><span class="chip">Parquet</span>
+        <span class="chip">FastAPI</span><span class="chip">React + Vite + TS</span><span class="chip">Docker</span>
+      </div>
+      <p class="muted" style="margin-top:14px; font-size:.85rem;">Illustrative demonstration only — not a real grid-control signal. Runs on a deterministic synthetic ISO-style load series.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://pruthvikadam-gridcast.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/pruthvikadam/gridcast/tree/main" target="_blank" rel="noopener">Code</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>
