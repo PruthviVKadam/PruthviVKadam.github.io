@@ -63,6 +63,18 @@
     </div>
   </header>
 
+  <section class="section container" style="padding-top:0;">
+    <figure style="margin:0 auto; max-width:980px;">
+      <img src="../assets/model-monitor.gif" data-gif data-poster="../assets/model-monitor-poster.png"
+           alt="Advancing through batches lights up a drift ALERT as a feature's distribution shifts"
+           loading="lazy"
+           style="width:100%; border:1px solid var(--line-2); border-radius:18px; box-shadow:var(--shadow-lg); display:block;" />
+      <figcaption style="font-family:var(--mono); font-size:.74rem; color:var(--muted); text-align:center; margin-top:12px;">
+        The live app — advancing batches trips a drift ALERT while AUC stays blind.
+      </figcaption>
+    </figure>
+  </section>
+
   <main>
     <section class="section container">
       <div class="par">
@@ -108,6 +120,7 @@
       <span><a href="https://PruthviVKadam-model-monitor.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/model-monitor" target="_blank" rel="noopener">Repository</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>

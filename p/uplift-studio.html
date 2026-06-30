@@ -65,6 +65,18 @@
     </div>
   </header>
 
+  <section class="section container" style="padding-top:0;">
+    <figure style="margin:0 auto; max-width:980px;">
+      <img src="../assets/uplift-studio.gif" data-gif data-poster="../assets/uplift-studio-poster.png"
+           alt="Dragging the targeting-budget slider updates the captured-uplift number and the Qini curve"
+           loading="lazy"
+           style="width:100%; border:1px solid var(--line-2); border-radius:18px; box-shadow:var(--shadow-lg); display:block;" />
+      <figcaption style="font-family:var(--mono); font-size:.74rem; color:var(--muted); text-align:center; margin-top:12px;">
+        The live app — sweeping the targeting budget updates the captured uplift and Qini curve.
+      </figcaption>
+    </figure>
+  </section>
+
   <main>
     <section class="section container">
       <div class="par">
@@ -110,6 +122,7 @@
       <span><a href="https://PruthviVKadam-uplift-studio.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/uplift-studio" target="_blank" rel="noopener">Repository</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>

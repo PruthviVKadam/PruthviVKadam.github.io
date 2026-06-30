@@ -47,7 +47,7 @@
 
   <section class="section container" style="padding-top:0;">
     <figure class="shot">
-      <img src="../assets/atmosphere.png" alt="Atmosphere UI: a dark MapLibre map with an AQI station marker, a Now-to-+24h forecast scrubber, and PM2.5 / O3 / NO2 toggles" loading="lazy" />
+      <img src="../assets/atmosphere.gif" data-gif data-poster="../assets/atmosphere.png" alt="Atmosphere UI: a dark MapLibre map with an AQI station marker, a Now-to-+24h forecast scrubber, and PM2.5 / O3 / NO2 toggles" loading="lazy" />
       <figcaption>The live app — a MapLibre map with AQI stations, a 24h forecast scrubber, and per-pollutant toggles.</figcaption>
     </figure>
   </section>
@@ -99,6 +99,7 @@
       <span><a href="https://1luciferxlucifer1-atmosphere.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/1luciferxlucifer1/atmosphere/tree/main" target="_blank" rel="noopener">Code</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>

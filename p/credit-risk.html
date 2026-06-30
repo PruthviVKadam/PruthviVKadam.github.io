@@ -62,6 +62,18 @@
     </div>
   </header>
 
+  <section class="section container" style="padding-top:0;">
+    <figure style="margin:0 auto; max-width:980px;">
+      <img src="../assets/credit-risk.gif" data-gif data-poster="../assets/credit-risk-poster.png"
+           alt="Dragging the decision threshold flips the applicant between Approve and Decline as the risk meter and SHAP bars update"
+           loading="lazy"
+           style="width:100%; border:1px solid var(--line-2); border-radius:18px; box-shadow:var(--shadow-lg); display:block;" />
+      <figcaption style="font-family:var(--mono); font-size:.74rem; color:var(--muted); text-align:center; margin-top:12px;">
+        The live app — moving the decision threshold flips Approve ↔ Decline in real time.
+      </figcaption>
+    </figure>
+  </section>
+
   <main>
     <section class="section container">
       <div class="par">
@@ -107,6 +119,7 @@
       <span><a href="https://PruthviVKadam-credit-risk.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://github.com/PruthviVKadam/credit-risk" target="_blank" rel="noopener">Repository</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>

@@ -123,7 +123,7 @@
     <!-- Full catalogue, tiered by hiring-visibility -->
     <section class="section container">
       <p class="eyebrow">All projects</p>
-      <h2 style="font-size: clamp(1.5rem,3vw,2rem); margin: 8px 0 6px;">Eleven projects, ten you can click</h2>
+      <h2 style="font-size: clamp(1.5rem,3vw,2rem); margin: 8px 0 6px;">Fifteen projects, fourteen you can click</h2>
       <p class="muted" style="margin-bottom: 28px;">Each opens a dedicated case study. Metrics are copied from each project's real output.</p>
 
       <div class="grid">
@@ -132,7 +132,7 @@
         <a class="proj span-12" href="p/skywatt.html" style="--accent:#f5b301;">
           <div class="flagship-grid">
             <div class="flagship-media">
-              <img src="assets/skywatt.png" alt="SkyWatt live UI — sky image with cloud overlay, a predicted-power gauge, and a model-vs-persistence chart" loading="lazy" />
+              <img src="assets/skywatt.gif" data-gif data-poster="assets/skywatt.png" alt="SkyWatt live UI — sky image with cloud overlay, a predicted-power gauge, and a model-vs-persistence chart" loading="lazy" />
             </div>
             <div class="flagship-body">
               <span class="rank">★ New flagship · Computer Vision · Live</span>
@@ -149,7 +149,7 @@
         <a class="proj span-12" href="p/gridcast.html" style="--accent:#20c997;">
           <div class="flagship-grid">
             <div class="flagship-media">
-              <img src="assets/gridcast.png" alt="GridCast live UI — a 48h load forecast with prediction band and peak markers, a peak-risk gauge, and what-if weather dials" loading="lazy" />
+              <img src="assets/gridcast.gif" data-gif data-poster="assets/gridcast.png" alt="GridCast live UI — a 48h load forecast with prediction band and peak markers, a peak-risk gauge, and what-if weather dials" loading="lazy" />
             </div>
             <div class="flagship-body">
               <span class="rank">★ New flagship · Time Series at scale · Live</span>
@@ -166,7 +166,7 @@
         <a class="proj span-12" href="p/atmosphere.html" style="--accent:#2dd4bf;">
           <div class="flagship-grid">
             <div class="flagship-media">
-              <img src="assets/atmosphere.png" alt="Atmosphere live UI — a dark MapLibre map with an AQI station marker, a 24h forecast scrubber, and PM2.5/O3/NO2 toggles" loading="lazy" />
+              <img src="assets/atmosphere.gif" data-gif data-poster="assets/atmosphere.png" alt="Atmosphere live UI — a dark MapLibre map with an AQI station marker, a 24h forecast scrubber, and PM2.5/O3/NO2 toggles" loading="lazy" />
             </div>
             <div class="flagship-body">
               <span class="rank">★ New flagship · Reliability-first · Live</span>
@@ -183,7 +183,7 @@
         <a class="proj span-12" href="p/fnsp.html" style="--accent:#f59e0b;">
           <div class="flagship-grid">
             <div class="flagship-media">
-              <img src="assets/fnsp.png" alt="FNSP live UI — a market terminal with a news tape, a strategy-vs-baseline backtest, a bear/flat/bull forecast gauge, and a headline playground" loading="lazy" />
+              <img src="assets/fnsp.gif" data-gif data-poster="assets/fnsp.png" alt="FNSP live UI — a market terminal with a news tape, a strategy-vs-baseline backtest, a bear/flat/bull forecast gauge, and a headline playground" loading="lazy" />
             </div>
             <div class="flagship-body">
               <span class="rank">★ New flagship · Finance NLP · Live</span>
@@ -313,6 +313,12 @@
       <span><a href="mailto:pruthvivkadam@gmail.com">pruthvivkadam@gmail.com</a> · <a href="https://github.com/PruthviVKadam/PruthviVKadam.github.io" target="_blank" rel="noopener">Source</a></span>
     </div>
   </footer>
+
+  <script>
+    // Accessibility: honor "reduce motion" by swapping demo GIFs for their static poster.
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches)
+      document.querySelectorAll("img[data-gif]").forEach(i => { i.src = i.dataset.poster; });
+  </script>
 </body>
 
 </html>

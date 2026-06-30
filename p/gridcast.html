@@ -47,7 +47,7 @@
 
   <section class="section container" style="padding-top:0;">
     <figure class="shot">
-      <img src="../assets/gridcast.png" alt="GridCast UI: a 48h system-load forecast with a p10–p90 band and peak markers, a peak-risk gauge, and live what-if weather dials" loading="lazy" />
+      <img src="../assets/gridcast.gif" data-gif data-poster="../assets/gridcast.png" alt="GridCast UI: a 48h system-load forecast with a p10–p90 band and peak markers, a peak-risk gauge, and live what-if weather dials" loading="lazy" />
       <figcaption>The live app — 48h load forecast with prediction band + peak markers, a peak-risk gauge, and what-if weather dials.</figcaption>
     </figure>
   </section>
@@ -99,6 +99,7 @@
       <span><a href="https://pruthvikadam-gridcast.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/pruthvikadam/gridcast/tree/main" target="_blank" rel="noopener">Code</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>

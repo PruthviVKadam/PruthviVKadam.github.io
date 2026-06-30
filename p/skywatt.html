@@ -47,7 +47,7 @@
 
   <section class="section container" style="padding-top:0;">
     <figure class="shot">
-      <img src="../assets/skywatt.png" alt="SkyWatt UI: sky image with cloud overlay, a predicted-power gauge (13.7 kW), and a model-vs-persistence chart over a recorded day with cloud-transition markers" loading="lazy" />
+      <img src="../assets/skywatt.gif" data-gif data-poster="../assets/skywatt.png" alt="SkyWatt UI: sky image with cloud overlay, a predicted-power gauge (13.7 kW), and a model-vs-persistence chart over a recorded day with cloud-transition markers" loading="lazy" />
       <figcaption>The live app — sky panel + cloud-segmentation, a physically-bounded power gauge, and a recorded-day scrubber.</figcaption>
     </figure>
   </section>
@@ -99,6 +99,7 @@
       <span><a href="https://pruthvikadam-skywatt.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/pruthvikadam/skywatt/tree/main" target="_blank" rel="noopener">Code</a></span>
     </div>
   </footer>
+  <script>if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.querySelectorAll("img[data-gif]").forEach(i=>{i.src=i.dataset.poster;});</script>
 </body>
 
 </html>
