@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FNSP — financial news sentiment → stock-direction forecasting as a market terminal, built leak-free with purged walk-forward CV and honest backtest controls. Full-stack React + FastAPI. By Pruthvi Kadam." />
+  <title>FNSP — Pruthvi Kadam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Archetype: TERMINAL — dark, amber accent; real product screenshot as the hero. */
+    body { --accent: #f59e0b; }
+    .p-hero { text-align: center; padding-block: clamp(40px, 7vw, 86px) clamp(20px,3vw,32px); }
+    .p-hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background: radial-gradient(60% 60% at 50% -10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
+    .p-hero .lead { margin-inline:auto; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+    .shot { margin: 0 auto; max-width: 1100px; }
+    .shot img { width:100%; border:1px solid var(--line-2); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); display:block; }
+    .shot figcaption { font-family: var(--mono); font-size:.74rem; color: var(--muted); text-align:center; margin-top:12px; }
+  </style>
+</head>
+
+<body class="theme-dark">
+  <nav class="nav">
+    <a class="brand" href="../index.html">← Pruthvi Kadam<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a class="btn btn-ghost btn-sm" href="https://huggingface.co/spaces/1luciferxlucifer1/fnsp/tree/main" target="_blank" rel="noopener">Code</a>
+      <a class="btn btn-primary btn-sm" href="https://1luciferxlucifer1-fnsp.hf.space" target="_blank" rel="noopener">Live demo ↗</a>
+    </div>
+  </nav>
+
+  <header class="p-hero">
+    <div class="container">
+      <p class="eyebrow">Finance NLP · Leakage Rigor · Full-stack · Live</p>
+      <h1 class="p-title" style="max-width:20ch; margin-inline:auto;">A market terminal that's <span style="color:var(--accent)">leak-free</span> by construction.</h1>
+      <p class="lead">Score a financial headline in real time and watch it nudge a short-term direction forecast against a backtest — built so the pipeline <strong>can't peek at the future</strong>, with honest controls instead of a notebook that secretly does.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://1luciferxlucifer1-fnsp.hf.space" target="_blank" rel="noopener">Open the live demo <span class="arrow">→</span></a>
+        <a class="btn" href="https://huggingface.co/spaces/1luciferxlucifer1/fnsp/tree/main" target="_blank" rel="noopener">View code</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container" style="padding-top:0;">
+    <figure class="shot">
+      <img src="../assets/fnsp.png" alt="FNSP UI: a market terminal with a live news tape, a strategy-vs-baseline backtest equity curve, a bear/flat/bull forecast gauge, and a headline playground" loading="lazy" />
+      <figcaption>The live app — a news tape, a strategy-vs-baseline backtest, a direction-forecast gauge, and a headline sentiment playground.</figcaption>
+    </figure>
+  </section>
+
+  <main>
+    <section class="section container" style="padding-top:0;">
+      <div class="par">
+        <div class="block"><h3>Problem</h3><p class="pdesc">News→stock demos are usually notebooks that secretly peek at the future, then report a fantastic backtest. The hard part isn't the model — it's <em>not lying</em>.</p></div>
+        <div class="block"><h3>Approach</h3><p class="pdesc">Bucket news by its known-at timestamp and prices by bar close; score sentiment (VADER, FinBERT optional) → features → a model trained with <strong>purged walk-forward CV</strong> against price-only and naive baselines.</p></div>
+        <div class="block"><h3>Result</h3><p class="pdesc">A terminal where a real leakage test drives the feature pipeline, <code>beats_baseline</code> is read from a committed evaluation, and the backtest ships with buy-and-hold + random-entry controls.</p></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">Honest, leak-free metrics</h2>
+      <div class="metric-grid">
+        <div class="metric"><div class="n">0.616</div><div class="l">model AUC (price + sentiment), walk-forward</div></div>
+        <div class="metric"><div class="n">0.524</div><div class="l">price-only baseline AUC (naive 0.500)</div></div>
+        <div class="metric"><div class="n">0.833</div><div class="l">VADER sentiment accuracy (macro-F1 0.836)</div></div>
+        <div class="metric"><div class="n">beats both</div><div class="l">read from a committed evaluation, not hardcoded</div></div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Insights</p>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem); margin:8px 0 20px;">What it shows</h2>
+      <div class="insights">
+        <p class="insight"><b>Leakage is the whole game.</b> A real test drives the actual feature pipeline and proves a future article can't influence an earlier row — the discipline most "news→stock" demos skip.</p>
+        <p class="insight"><b>Modest beats honest.</b> Markets are near-random, so AUC 0.616 over a 0.524 price-only baseline is a <em>small, real</em> edge — reported as such, not dressed up.</p>
+        <p class="insight"><b>The backtest tells on itself.</b> The on-screen Sharpe is flagged as an in-sample illustration on a low-noise synthetic series, shown beside buy-and-hold and random-entry controls — the comparison is the point, not the absolute return.</p>
+        <p class="insight"><b>Validated sentiment, with a disclaimer.</b> The scorer is measured on a labeled benchmark, and a "not financial advice" notice ships on every surface and API payload.</p>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0;">
+      <p class="eyebrow">Built with</p>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip">VADER</span><span class="chip">scikit-learn (HGB)</span><span class="chip">DuckDB</span>
+        <span class="chip">FastAPI</span><span class="chip">React + Vite + TS</span><span class="chip">Docker</span>
+      </div>
+      <p class="muted" style="margin-top:14px; font-size:.85rem;">Educational demo on a reproducible synthetic dataset — not financial advice, not a recommendation to buy or sell any security.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <a class="backlink" href="../index.html">← All projects</a>
+      <span><a href="https://1luciferxlucifer1-fnsp.hf.space" target="_blank" rel="noopener">Live demo</a> · <a href="https://huggingface.co/spaces/1luciferxlucifer1/fnsp/tree/main" target="_blank" rel="noopener">Code</a></span>
+    </div>
+  </footer>
+</body>
+
+</html>
